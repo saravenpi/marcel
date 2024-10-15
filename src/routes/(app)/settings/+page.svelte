@@ -42,8 +42,8 @@
 	<div class="w-full flex flex-row justify-between">
 		<span class="text-3xl">Settings</span>
 	</div>
-	<div class="flex flex-col rounded border p-3">
-		<span class="text-2xl p-2">User Info</span>
+	<div class="flex flex-col rounded-xl p-4 bg-neutral-100 dark:bg-neutral-800">
+		<span class="text-2xl p-2">My profile</span>
 		<div class="p-3 flex flex-col gap-2">
 			<Label for="email">Email</Label>
 			<span class="text-lg p-2">{data.user.email}</span>
