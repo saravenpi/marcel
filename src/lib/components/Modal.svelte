@@ -28,7 +28,7 @@
 					</Drawer.Description>
 				</Drawer.Header>
 
-				<div class="">
+				<div class="p-6">
 					<slot />
 				</div>
 

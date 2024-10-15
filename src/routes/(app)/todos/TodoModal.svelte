@@ -28,28 +28,26 @@
 </script>
 
 <Modal bind:open={todoModal} title="Create a todo" description="">
-	<div class="p-6">
-		<form
-			action="?/addTodo"
-			method="POST"
-			use:enhance={() => {
-				return ({ result }) => {
-					handleAdd(result);
-				};
-			}}
-		>
-			<div class="flex flex-col gap-6">
-				<Input
-					type="text"
-					name="title"
-					value={title}
-					placeholder="Add a title"
-				/>
-				<Button type="submit">
-					<Icon icon="akar-icons:plus" class="size-6 mr-2" />
-					Create
-				</Button>
-			</div>
-		</form>
-	</div>
+	<form
+		action="?/addTodo"
+		method="POST"
+		use:enhance={() => {
+			return ({ result }) => {
+				handleAdd(result);
+			};
+		}}
+	>
+		<div class="flex flex-col gap-6">
+			<Input
+				type="text"
+				name="title"
+				value={title}
+				placeholder="Add a title"
+			/>
+			<Button type="submit">
+				<Icon icon="akar-icons:plus" class="size-6 mr-2" />
+				Create
+			</Button>
+		</div>
+	</form>
 </Modal>

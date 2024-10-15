@@ -36,36 +36,34 @@
 </script>
 
 <Modal bind:open={eventModal} title="Create an Event" description="">
-	<div class="p-6">
-		<form
-			action="?/addEvent"
-			method="POST"
-			use:enhance={() => {
-				return ({ result }) => {
-					handleAdd(result);
-				};
-			}}
-		>
-			<div class="flex flex-col gap-6">
-				<Input
-					type="text"
-					name="title"
-					value={title}
-					placeholder="Add a title"
-				/>
-				<Input
-					type="text"
-					name="description"
-					value={description}
-					placeholder="Add a description"
-				/>
-				<DateButton bind:date />
-				<input type="hidden" name="date" bind:value={date} />
-				<Button type="submit">
-					<Icon icon="akar-icons:plus" class="size-6 mr-2" />
-					Create
-				</Button>
-			</div>
-		</form>
-	</div>
+	<form
+		action="?/addEvent"
+		method="POST"
+		use:enhance={() => {
+			return ({ result }) => {
+				handleAdd(result);
+			};
+		}}
+	>
+		<div class="flex flex-col gap-6">
+			<Input
+				type="text"
+				name="title"
+				value={title}
+				placeholder="Add a title"
+			/>
+			<Input
+				type="text"
+				name="description"
+				value={description}
+				placeholder="Add a description"
+			/>
+			<DateButton bind:date />
+			<input type="hidden" name="date" bind:value={date} />
+			<Button type="submit">
+				<Icon icon="akar-icons:plus" class="size-6 mr-2" />
+				Create
+			</Button>
+		</div>
+	</form>
 </Modal>
