@@ -6,31 +6,32 @@
 </script>
 
 <div class="w-full h-screen" id="bg">
-	<div class="w-full top-0 fixed flex p-6 justify-between">
+	<!-- top bar -->
+	<div class="w-full top-0 fixed flex flex-row p-6 justify-between">
 		<span class="text-4xl text-white font-bold">🧘 Marcel</span>
 
 		{#if data.user}
+			<!-- app button if user is authenticated -->
 			<div class="flex flex-row gap-2 place-items-center">
 				<Button
 					href="/events"
-					class="bg-white text-black hover:text-white"
-					>Open App</Button
+					class="bg-transparent text-white text-xl border-2 border-white"
+					variant="outline">Open App</Button
 				>
 			</div>
 		{:else}
+			<!-- auth buttons if user is not logged in -->
 			<div class="flex flex-row gap-2">
 				<Button
 					href="/login"
-					class="bg-white text-black hover:text-white">Login</Button
-				>
-				<Button
-					href="/register"
-					class="bg-white text-black hover:text-white"
-					>Register</Button
+					class="text-white bg-transparent text-xl border-2 border-white"
+					variant="outline">Login</Button
 				>
 			</div>
 		{/if}
 	</div>
+
+	<!-- center content -->
 	<div
 		class="-full h-full flex flex-col justify-center place-items-center"
 		id="bg"
@@ -42,6 +43,10 @@
 				<span class="text-5xl text-white">Organise yourself</span>
 				<span class="text-5xl header ml-2 font-bold">differently</span>
 			</span>
+			<Button
+				href="/register"
+				class="bg-transparent text-white text-xl border-2 border-white">Get Started</Button
+			>
 		</div>
 	</div>
 </div>

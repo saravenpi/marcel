@@ -96,21 +96,21 @@
 				<Separator class="w-64 mx-auto" />
 
 				<Drawer.Footer>
-					<Button
-						variant="ghost"
-						on:click={handleLogout}
-						class={open
-							? "bg-red-600 bg-opacity-80 w-[80%] mx-auto"
-							: "justify-start w-full bg-red-600 bg-opacity-80"}
-					>
-						<div class="flex items-center gap-2">
-							<Icon
-								icon="material-symbols:logout"
-								class="size-6"
-							/>
-							Logout
-						</div>
-					</Button>
+					<!-- <Button -->
+					<!-- 	variant="ghost" -->
+					<!-- 	on:click={handleLogout} -->
+					<!-- 	class={open -->
+					<!-- 		? "bg-red-600 bg-opacity-80 w-[80%] mx-auto" -->
+					<!-- 		: "justify-start w-full bg-red-600 bg-opacity-80"} -->
+					<!-- > -->
+					<!-- 	<div class="flex items-center gap-2"> -->
+					<!-- 		<Icon -->
+					<!-- 			icon="material-symbols:logout" -->
+					<!-- 			class="size-6" -->
+					<!-- 		/> -->
+					<!-- 		Logout -->
+					<!-- 	</div> -->
+					<!-- </Button> -->
 
 					<Drawer.Close asChild let:builder>
 						<Button
