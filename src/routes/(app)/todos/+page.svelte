@@ -1,0 +1,36 @@
+<script lang="ts">
+	import Todo from "$lib/components/Todo.svelte";
+	import { Button } from "$lib/components/ui/button";
+	import type { TodoType } from "$lib/types";
+	import Icon from "@iconify/svelte";
+	import TodoModal from "./TodoModal.svelte";
+
+	export let data: { todos: TodoType[] };
+
+	let todos: TodoType[] = data.todos;
+	let todoModal = false;
+
+	// Function to destroy todo by id
+	function destroyEvent(todoId: string) {
+		todos = todos.filter((todo) => todo.id !== todoId);
+	}
+</script>
+
+<TodoModal bind:todos bind:todoModal />
+<div class="flex flex-col gap-6">
+	<div class="w-full flex flex-row justify-between">
+		<span class="text-3xl">Todos</span>
+		<Button on:click={() => (todoModal = true)} class="flex flex-row gap-2">
+			<Icon icon="heroicons:plus" class="size-5" />
+			Create Todo
+		</Button>
+	</div>
+
+	{#if todos.length > 0}
+		{#each todos as todo}
+			<Todo {todo} destroy={destroyEvent} />
+		{/each}
+	{:else}
+		<div class="text-center">No todos found</div>
+	{/if}
+</div>
