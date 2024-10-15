@@ -1,5 +1,23 @@
 <script>
+	import { onMount } from "svelte";
+
 	export let message = "Loading...";
+	let isDarkMode = false;
+
+	onMount(() => {
+		// Check localStorage for a saved theme or use system preference
+		isDarkMode =
+			localStorage.getItem("theme") === "dark" ||
+			(!localStorage.getItem("theme") &&
+				window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+		// Update the theme based on the stored or system preference
+		if (isDarkMode) {
+			document.documentElement.classList.add("dark");
+		} else {
+			document.documentElement.classList.remove("dark");
+		}
+	});
 </script>
 
 <div class="loading loading-overlay dark:bg-transparent">

@@ -11,14 +11,21 @@
 
 		{#if data.user}
 			<div class="flex flex-row gap-2 place-items-center">
-				<Button href="/events" class="bg-white text-black hover:text-white"
+				<Button
+					href="/events"
+					class="bg-white text-black hover:text-white"
 					>Open App</Button
 				>
 			</div>
 		{:else}
 			<div class="flex flex-row gap-2">
-				<Button href="/login" class="bg-white text-black hover:text-white">Login</Button>
-				<Button href="/register" class="bg-white text-black hover:text-white"
+				<Button
+					href="/login"
+					class="bg-white text-black hover:text-white">Login</Button
+				>
+				<Button
+					href="/register"
+					class="bg-white text-black hover:text-white"
 					>Register</Button
 				>
 			</div>
@@ -43,44 +50,6 @@
 	#bg {
 		background: linear-gradient(270deg, #eeaeca, #94bbe9, #9571e4);
 		background-size: 600% 600%;
-
-		-webkit-animation: AnimationName 11s ease infinite;
-		-moz-animation: AnimationName 11s ease infinite;
-		animation: AnimationName 11s ease infinite;
-	}
-
-	@-webkit-keyframes AnimationName {
-		0% {
-			background-position: 0% 50%;
-		}
-		50% {
-			background-position: 100% 50%;
-		}
-		100% {
-			background-position: 0% 50%;
-		}
-	}
-	@-moz-keyframes AnimationName {
-		0% {
-			background-position: 0% 50%;
-		}
-		50% {
-			background-position: 100% 50%;
-		}
-		100% {
-			background-position: 0% 50%;
-		}
-	}
-	@keyframes AnimationName {
-		0% {
-			background-position: 0% 50%;
-		}
-		50% {
-			background-position: 100% 50%;
-		}
-		100% {
-			background-position: 0% 50%;
-		}
 	}
 
 	.header {
