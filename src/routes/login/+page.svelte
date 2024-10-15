@@ -58,7 +58,7 @@
 
 <style>
 	#bg {
-		background-image: url("florian.jpg");
+		background-image: url("/florian.jpg");
 		background-size: cover;
 	}
 </style>
