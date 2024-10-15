@@ -56,9 +56,9 @@
 			<span class="text-2xl p-2">My profile</span>
 			<div class="p-3 flex flex-col gap-2">
 				<Label for="email">Email</Label>
-				<span class="text-lg p-2">{data.user.email}</span>
+				<span class="text-sm md:text-lg p-2">{data.user.email}</span>
 				<Label for="email">Username</Label>
-				<span class="text-lg p-2">{data.user.username}</span>
+				<span class="text-sm md:text-lg p-2">{data.user.username}</span>
 			</div>
 		{/if}
 
