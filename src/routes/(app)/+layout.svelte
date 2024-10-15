@@ -3,12 +3,30 @@
 	import MobileNavbar from "$lib/components/MobileNavbar.svelte";
 	import { Button } from "$lib/components/ui/button";
 	import Icon from "@iconify/svelte";
+	import { onMount } from "svelte";
 
 	let mobile = false;
 	let mobileNavOpen = false;
 	let windowSize: number;
 
 	$: mobile = windowSize < 1024;
+
+	let isDarkMode = false;
+
+	onMount(() => {
+		// Check localStorage for a saved theme or use system preference
+		isDarkMode =
+			localStorage.getItem("theme") === "dark" ||
+			(!localStorage.getItem("theme") &&
+				window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+		// Update the theme based on the stored or system preference
+		if (isDarkMode) {
+			document.documentElement.classList.add("dark");
+		} else {
+			document.documentElement.classList.remove("dark");
+		}
+	});
 </script>
 
 <svelte:window bind:innerWidth={windowSize} />

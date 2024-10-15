@@ -14,7 +14,6 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 			}
 		}
 
-
 		// Return the user and todos
 		return {
 			user,

@@ -3,15 +3,12 @@
 </script>
 
 <div class="loading loading-overlay dark:bg-transparent">
-	<div class="spinner"></div>
+	<div class="spinner text-5xl">🧘</div>
 	<p>{message}</p>
 </div>
 
 <style>
-	/* Basic styling for a spinner */
 	.spinner {
-		border: 4px solid rgba(0, 0, 0, 0.1);
-		border-top: 4px solid #000000;
 		border-radius: 50%;
 		width: 40px;
 		height: 40px;

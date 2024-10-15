@@ -1,17 +1,28 @@
-<script>
+<script lang="ts">
 	import Button from "$lib/components/ui/button/button.svelte";
+	import type { User } from "$lib/types";
+
+	export let data: { user: User };
 </script>
 
 <div class="w-full h-screen" id="bg">
 	<div class="w-full top-0 fixed flex p-6 justify-between">
-		<span class="text-4xl text-white font-bold">Marcel</span>
+		<span class="text-4xl text-white font-bold">🧘 Marcel</span>
 
-		<div class="flex flex-row gap-2">
-			<Button href="/login" class="bg-white text-black">Login</Button>
-			<Button href="/register" class="bg-white text-black"
-				>Register</Button
-			>
-		</div>
+		{#if data.user}
+			<div class="flex flex-row gap-2 place-items-center">
+				<Button href="/events" class="bg-white text-black"
+					>Open App</Button
+				>
+			</div>
+		{:else}
+			<div class="flex flex-row gap-2">
+				<Button href="/login" class="bg-white text-black">Login</Button>
+				<Button href="/register" class="bg-white text-black"
+					>Register</Button
+				>
+			</div>
+		{/if}
 	</div>
 	<div
 		class="-full h-full flex flex-col justify-center place-items-center"
