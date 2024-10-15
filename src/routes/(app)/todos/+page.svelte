@@ -29,7 +29,7 @@
 		</Button>
 	</div>
 
-	{#if todos.length > 0}
+	{#if todos && todos.length > 0}
 		{#each todos as todo}
 			<Todo {todo} destroy={destroyEvent} />
 		{/each}

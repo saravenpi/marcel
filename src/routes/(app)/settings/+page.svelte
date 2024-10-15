@@ -39,24 +39,32 @@
 </script>
 
 <div class="flex flex-col gap-6">
+	<!-- Header -->
 	<div class="w-full flex flex-row justify-between">
 		<span class="text-3xl flex flex-row place-items-center gap-2">
 			<Icon icon="heroicons:cog" class="size-7" />
 			Settings</span
 		>
 	</div>
+
+	<!-- Settings card -->
 	<div
 		class="flex flex-col rounded-xl p-4 bg-neutral-100 dark:bg-neutral-800"
 	>
-		<span class="text-2xl p-2">My profile</span>
-		<div class="p-3 flex flex-col gap-2">
-			<Label for="email">Email</Label>
-			<span class="text-lg p-2">{data.user.email}</span>
-			<Label for="email">Username</Label>
-			<span class="text-lg p-2">{data.user.username}</span>
-		</div>
+		<!-- Profile information -->
+		{#if data.user}
+			<span class="text-2xl p-2">My profile</span>
+			<div class="p-3 flex flex-col gap-2">
+				<Label for="email">Email</Label>
+				<span class="text-lg p-2">{data.user.email}</span>
+				<Label for="email">Username</Label>
+				<span class="text-lg p-2">{data.user.username}</span>
+			</div>
+		{/if}
 
+		<!-- Buttons -->
 		<div class="flex flex-col gap-3">
+			<!-- Theme toggle -->
 			<Button on:click={toggleTheme} class="flex flex-row gap-2 w-min">
 				<Icon
 					icon={isDarkMode ? "heroicons:sun" : "heroicons:moon"}

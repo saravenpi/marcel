@@ -53,7 +53,7 @@
 		</Button>
 	</div>
 
-	{#if Object.keys(groupedEvents).length > 0}
+	{#if groupedEvents && Object.keys(groupedEvents).length > 0}
 		{#each Object.keys(groupedEvents) as date}
 			<div class="group">
 				<h2 class="text-2xl font-semibold mt-4">{date}</h2>
