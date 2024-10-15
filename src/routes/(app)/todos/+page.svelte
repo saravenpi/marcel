@@ -19,7 +19,10 @@
 <TodoModal bind:todos bind:todoModal />
 <div class="flex flex-col gap-6">
 	<div class="w-full flex flex-row justify-between">
-		<span class="text-3xl">Todos</span>
+		<span class="text-3xl flex flex-row place-items-center gap-2">
+			<Icon icon="heroicons:check-circle" class="size-7" />
+			Todos</span
+		>
 		<Button on:click={() => (todoModal = true)} class="flex flex-row gap-2">
 			<Icon icon="heroicons:plus" class="size-5" />
 			Create Todo

@@ -40,9 +40,14 @@
 
 <div class="flex flex-col gap-6">
 	<div class="w-full flex flex-row justify-between">
-		<span class="text-3xl">Settings</span>
+		<span class="text-3xl flex flex-row place-items-center gap-2">
+			<Icon icon="heroicons:cog" class="size-7" />
+			Settings</span
+		>
 	</div>
-	<div class="flex flex-col rounded-xl p-4 bg-neutral-100 dark:bg-neutral-800">
+	<div
+		class="flex flex-col rounded-xl p-4 bg-neutral-100 dark:bg-neutral-800"
+	>
 		<span class="text-2xl p-2">My profile</span>
 		<div class="p-3 flex flex-col gap-2">
 			<Label for="email">Email</Label>

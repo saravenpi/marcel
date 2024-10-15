@@ -40,7 +40,10 @@
 <EventModal bind:events bind:eventModal {groupEventsByDay} bind:groupedEvents />
 <div class="flex flex-col gap-6">
 	<div class="w-full flex flex-row justify-between">
-		<span class="text-3xl">Events</span>
+		<span class="text-3xl flex flex-row place-items-center gap-2">
+			<Icon icon="heroicons:calendar" class="size-7" />
+			Events
+		</span>
 		<Button
 			on:click={() => (eventModal = !eventModal)}
 			class="flex flex-row gap-2"
