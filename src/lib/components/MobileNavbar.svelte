@@ -40,8 +40,12 @@
 		<Drawer.Content>
 			<div class="mx-auto w-full max-w-sm">
 				<Drawer.Header>
-					<Drawer.Title class="text-3xl">🧘 Marcel</Drawer.Title>
-					<Drawer.Description class="text-xl">Navigation</Drawer.Description>
+					<Drawer.Title class="text-3xl"
+						><a href="/">🧘 Marcel</a></Drawer.Title
+					>
+					<Drawer.Description class="text-xl"
+						>Navigation</Drawer.Description
+					>
 
 					{#if avatarUrl}
 						<Avatar.Root class="justify-start ml-2 mx-auto size-16">

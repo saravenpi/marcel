@@ -11,14 +11,14 @@
 
 		{#if data.user}
 			<div class="flex flex-row gap-2 place-items-center">
-				<Button href="/events" class="bg-white text-black"
+				<Button href="/events" class="bg-white text-black hover:text-white"
 					>Open App</Button
 				>
 			</div>
 		{:else}
 			<div class="flex flex-row gap-2">
-				<Button href="/login" class="bg-white text-black">Login</Button>
-				<Button href="/register" class="bg-white text-black"
+				<Button href="/login" class="bg-white text-black hover:text-white">Login</Button>
+				<Button href="/register" class="bg-white text-black hover:text-white"
 					>Register</Button
 				>
 			</div>
