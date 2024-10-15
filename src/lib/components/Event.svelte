@@ -46,7 +46,7 @@
 		</form>
 	</div>
 </Modal>
-<div class="rounded border flex flex-col p-5">
+<div class="rounded-xl flex flex-col p-5 bg-neutral-100 dark:bg-neutral-800">
 	<div class="flex flex-row justify-between">
 		<span class="text-xl">{event.title}</span>
 		<Button
@@ -58,6 +58,10 @@
 			<Icon icon="mage:dots" class="size-5" />
 		</Button>
 	</div>
-	<span class="text-m text-gray-800 dark:text-gray-300">{formatDate(event.date)}</span>
-	<span class="text-m text-gray-800 dark:text-gray-300">{event.description}</span>
+	<span class="text-m text-gray-800 dark:text-gray-300"
+		>{formatDate(event.date)}</span
+	>
+	<span class="text-m text-gray-800 dark:text-gray-300"
+		>{event.description}</span
+	>
 </div>

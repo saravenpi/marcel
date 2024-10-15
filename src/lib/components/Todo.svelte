@@ -74,14 +74,9 @@
 		</form>
 	</div>
 </Modal>
-<div class="rounded border flex flex-col p-5">
+<div class="rounded-xl flex flex-col p-3 bg-neutral-100 dark:bg-neutral-800">
 	<div class="flex flex-row justify-between place-items-center">
-		{#if todo.done}
-			<span class="text-xl line-through text-gray-700">{todo.title}</span>
-		{:else}
-			<span class="text-xl">{todo.title}</span>
-		{/if}
-		<div class="flex flex-row gap-3">
+		<div class="flex flex-row gap-3 place-items-center">
 			<form
 				action="?/updateTodo"
 				method="POST"
@@ -98,13 +93,26 @@
 					value={todo.done ? "false" : "true"}
 				/>
 				<Button
-					class="flex flex-row gap-2"
+					class="flex flex-row gap-2 bg-transparent text-black dark:text-white p-0 hover:bg-neutral-700 hover:text-white dark:hover:text-black"
 					type="submit"
-					variant={todo.done ? "outline" : "default"}
 				>
-					{todo.done ? "Undone" : "Done"}
+					{#if todo.done}
+						<Icon icon="jam:close" class="size-6" />
+					{:else}
+						<Icon icon="jam:check" class="size-6" />
+					{/if}
 				</Button>
 			</form>
+			{#if todo.done}
+				<span
+					class="text-xl line-through text-neutral-700 dark:text-neutral-400"
+					>{todo.title}</span
+				>
+			{:else}
+				<span class="text-xl">{todo.title}</span>
+			{/if}
+		</div>
+		<div class="flex flex-row gap-3">
 			<Button
 				on:click={() => {
 					modal = true;

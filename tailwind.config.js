@@ -56,6 +56,10 @@ const config = {
 			},
 			fontFamily: {
 				sans: [...fontFamily.sans]
+			},
+			backgroundColor: {
+				dark: "#161616",
+				// "secondary": "#F9FAFB"
 			}
 		}
 	},
