@@ -24,7 +24,7 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		if (!client.authStore.isValid)
 			return {
 				user: null,
-				events: [],
+				todos: [],
 				error: "User not found"
 			}
 
