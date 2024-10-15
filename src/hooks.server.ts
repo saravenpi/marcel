@@ -21,14 +21,17 @@ export const authentication: Handle = async ({ event, resolve }) => {
 		return response;
 	}
 
+	// user is not authenticated and is trying to access a protected page
 	if (!event.locals.user && event.url.pathname != '/') {
 		event.cookies.delete("auth", { path: "/" });
 		event.cookies.delete("pbUser", { path: "/" });
 		client.authStore.clear();
 		throw redirect(303, '/');
 	}
-	if (event.locals.user && (NON_AUTH_PAGES.includes(event.url.pathname)))
-		throw redirect(303, '/events');
+
+	// user is authenticated and trying to access a non-auth page
+	// if (event.locals.user && (NON_AUTH_PAGES.includes(event.url.pathname)))
+	// 	throw redirect(303, '/events');
 
 	// hooks sequence
 	const response = await resolve(event);

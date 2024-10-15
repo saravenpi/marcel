@@ -19,7 +19,7 @@
 
 <div class="flex w-full justify-center place-items-center h-screen" id="bg">
 	<div class="rounded w-[500px] p-10 bg-transparent backdrop-blur-xl">
-		<div class="text-3xl mb-6 text-white">Login</div>
+		<div class="text-4xl mb-6 text-white">Login</div>
 		<form
 			action="?/login"
 			method="POST"
@@ -58,7 +58,45 @@
 
 <style>
 	#bg {
-		background-image: url("/florian.jpg");
-		background-size: cover;
+		background: linear-gradient(270deg, #eeaeca, #94bbe9, #9571e4);
+		background-size: 600% 600%;
+
+		-webkit-animation: AnimationName 11s ease infinite;
+		-moz-animation: AnimationName 11s ease infinite;
+		animation: AnimationName 11s ease infinite;
+	}
+
+	@-webkit-keyframes AnimationName {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
+	}
+	@-moz-keyframes AnimationName {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
+	}
+	@keyframes AnimationName {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
 	}
 </style>
