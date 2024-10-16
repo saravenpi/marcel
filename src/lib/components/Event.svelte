@@ -51,7 +51,7 @@
 <Modal bind:open={modal} title={event.title} description={event.description}>
 	<div class="flex flex-col gap-3 w-full justify-evenly">
 		<!-- Event data -->
-		<div class="flex flex-row gap-2">
+		<div class="flex flex-col md:flex-row gap-2 p-3">
 			<span
 				class="text-md text-gray-800 dark:text-gray-300 flex flex-row place-items-center"
 			>
@@ -94,7 +94,7 @@
 			<input type="hidden" name="date" bind:value={date} />
 
 			<Label for="address">Address</Label>
-			<AddressButton {address} />
+			<AddressButton bind:address finalAddress={address} />
 
 			<input type="hidden" name="eventId" value={event.id} />
 			<Button class="flex flex-row gap-2" type="submit">
@@ -112,7 +112,10 @@
 			}}
 		>
 			<input type="hidden" name="eventId" value={event.id} />
-			<Button class="flex flex-row gap-2" type="submit">
+			<Button
+				class="flex flex-row gap-2 w-full bg-transparent border text-white"
+				type="submit"
+			>
 				<Icon icon="heroicons:trash" class="size-5" />
 				Delete
 			</Button>

@@ -4,7 +4,7 @@
 	export let address: string = "";
 
 	let autocompleteData: any[] = [];
-	let finalAddress = "";
+	export let finalAddress = "";
 	let debounceTimeout: any = null;
 	const debounceDelay = 300;
 

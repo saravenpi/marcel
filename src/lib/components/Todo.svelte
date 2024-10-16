@@ -54,6 +54,11 @@
 				type="submit"
 				variant={todo.done ? "outline" : "default"}
 			>
+				{#if todo.done}
+					<Icon icon="jam:close" class="size-6" />
+				{:else}
+					<Icon icon="jam:check" class="size-6" />
+				{/if}
 				{todo.done ? "Undone" : "Done"}
 			</Button>
 		</form>
@@ -68,7 +73,10 @@
 			}}
 		>
 			<input type="hidden" name="todoId" value={todo.id} />
-			<Button class="flex flex-row gap-2 w-full" type="submit">
+			<Button
+				class="flex flex-row gap-2 w-full bg-transparent border text-white"
+				type="submit"
+			>
 				<Icon icon="heroicons:trash" class="size-5" />
 				Delete
 			</Button>
