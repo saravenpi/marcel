@@ -12,11 +12,22 @@
 	let eventModal = false;
 	let groupedEvents: { [key: string]: EventType[] } = {};
 
+	function formatDate(date: string) {
+		date = date.replaceAll("/", "-");
+		console.log(date)
+		const options: Intl.DateTimeFormatOptions = {
+			weekday: "long",
+			year: "numeric",
+			month: "numeric",
+			day: "numeric",
+		};
+		return new Date(date).toLocaleDateString(undefined, options);
+	}
 	// Function to group events by day
 	const groupEventsByDay = (events: EventType[]) => {
 		return events.reduce(
 			(groups, event) => {
-				const date = new Date(event.date).toLocaleDateString();
+				let date = new Date(event.date).toDateString();
 				if (!groups[date]) {
 					groups[date] = [];
 				}
@@ -56,7 +67,7 @@
 	{#if groupedEvents && Object.keys(groupedEvents).length > 0}
 		{#each Object.keys(groupedEvents) as date}
 			<div class="group">
-				<h2 class="text-2xl font-semibold mt-4">{date}</h2>
+				<h2 class="text-2xl font-semibold mt-4">{formatDate(date)}</h2>
 				<div class="flex flex-col gap-2 mt-3">
 					{#each groupedEvents[date] as event}
 						<Event {event} destroy={destroyEvent} />

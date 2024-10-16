@@ -7,6 +7,7 @@
 	import type { EventType } from "$lib/types";
 	import DateButton from "$lib/components/DateButton.svelte";
 	import Icon from "@iconify/svelte";
+	import AddressButton from "$lib/components/AddressButton.svelte";
 
 	// variables
 	export let eventModal = false;
@@ -20,6 +21,7 @@
 	let title: string = "";
 	let description: string = "";
 	let date: any = undefined;
+	let address: string = "";
 
 	// function to handle add event server result
 	function handleAdd(result: any) {
@@ -58,6 +60,8 @@
 				value={description}
 				placeholder="Add a description"
 			/>
+			<AddressButton bind:address/>
+			<input type="hidden" name="address" bind:value={address} />
 			<DateButton bind:date />
 			<input type="hidden" name="date" bind:value={date} />
 			<Button type="submit">

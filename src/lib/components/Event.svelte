@@ -48,7 +48,7 @@
 </Modal>
 <div class="rounded-xl flex flex-col p-5 bg-neutral-100 dark:bg-neutral-800">
 	<div class="flex flex-row justify-between">
-		<span class="text-xl">{event.title}</span>
+		<span class="text-2xl">{event.title}</span>
 		<Button
 			on:click={() => {
 				modal = true;
@@ -58,10 +58,21 @@
 			<Icon icon="mage:dots" class="size-5" />
 		</Button>
 	</div>
-	<span class="text-m text-gray-800 dark:text-gray-300"
-		>{formatDate(event.date)}</span
+	<span
+		class="text-md text-gray-800 dark:text-gray-300 flex flex-row place-items-center"
 	>
-	<span class="text-m text-gray-800 dark:text-gray-300"
+		<Icon icon="mdi:calendar" class="mr-2 h-4" />
+		{formatDate(event.date)}
+	</span>
+	{#if event.address}
+		<span
+			class="text-md text-gray-800 dark:text-gray-300 flex flex-row place-items-center"
+		>
+			<Icon icon="mdi:location" class="mr-2 h-4 w-4" />
+			{event.address}
+		</span>
+	{/if}
+	<span class="text-sm text-gray-800 dark:text-gray-300 mt-4"
 		>{event.description}</span
 	>
 </div>

@@ -59,18 +59,20 @@ export const actions = {
 			const title = data.get('title')?.toString().trim();
 			const description = data.get('description')?.toString().trim();
 			const date = data.get('date')?.toString().trim();
+			const address = data.get('address')?.toString().trim();
 
 			// Validate input fields
 			if (!title || !description || !date) {
-				return ERROR_RESPONSE("Title and description are required.");
+				return ERROR_RESPONSE("Title, description and date are required.");
 			}
 
 			// Attempt to create the event
 			const eventData = await client.collection("events").create({
-				// author: event.locals.user?.id,
+				author: event.locals.user?.id,
 				title,
 				description,
-				date
+				date,
+				address: address ? address : undefined
 			});
 
 			// Handle successful creation
