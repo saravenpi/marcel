@@ -32,6 +32,14 @@
 			Todos
 		</Button>
 		<Button
+			href="/habits"
+			variant={activePath === "/habits" ? "default" : "outline"}
+			class="flex flex-row gap-2"
+		>
+			<Icon icon="iconoir:calendar-check" class="size-5" />
+			Habits
+		</Button>
+		<Button
 			href="/settings"
 			variant={activePath === "/settings" ? "default" : "outline"}
 			class="flex flex-row gap-2"

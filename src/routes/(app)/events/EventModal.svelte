@@ -62,7 +62,7 @@
 			/>
 			<AddressButton bind:address/>
 			<input type="hidden" name="address" bind:value={address} />
-			<DateButton bind:date />
+			<DateButton bind:value={date} />
 			<input type="hidden" name="date" bind:value={date} />
 			<Button type="submit">
 				<Icon icon="akar-icons:plus" class="size-6 mr-2" />

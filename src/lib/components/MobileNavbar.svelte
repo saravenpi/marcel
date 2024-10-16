@@ -2,7 +2,6 @@
 	import { page } from "$app/stores";
 
 	import Icon from "@iconify/svelte";
-	import { toast } from "svelte-sonner";
 
 	import * as Drawer from "$lib/components/ui/drawer/index.js";
 	import { Button } from "$lib/components/ui/button";
@@ -15,24 +14,6 @@
 
 	let activePath: string;
 	$: activePath = $page.url.pathname;
-
-	// methods
-	async function handleLogout() {
-		open = false;
-
-		try {
-			const response = await fetch("/api/logout", { method: "POST" });
-			const result = await response.json();
-			if (result.success) {
-				toast.success("Logout successful");
-				window.location.href = "/";
-			} else {
-				toast.error("Logout failed");
-			}
-		} catch (error) {
-			toast.error("An error occurred. Please try again later.");
-		}
-	}
 </script>
 
 <main class="w-full h-full">
@@ -81,6 +62,19 @@
 							Todos
 						</Button>
 						<Button
+							href="/habits"
+							variant={activePath === "/habits"
+								? "default"
+								: "outline"}
+							class="flex flex-row gap-2"
+						>
+							<Icon
+								icon="iconoir:calendar-check"
+								class="size-5"
+							/>
+							Habits
+						</Button>
+						<Button
 							href="/settings"
 							variant={activePath === "/settings"
 								? "default"
@@ -96,22 +90,6 @@
 				<Separator class="w-64 mx-auto" />
 
 				<Drawer.Footer>
-					<!-- <Button -->
-					<!-- 	variant="ghost" -->
-					<!-- 	on:click={handleLogout} -->
-					<!-- 	class={open -->
-					<!-- 		? "bg-red-600 bg-opacity-80 w-[80%] mx-auto" -->
-					<!-- 		: "justify-start w-full bg-red-600 bg-opacity-80"} -->
-					<!-- > -->
-					<!-- 	<div class="flex items-center gap-2"> -->
-					<!-- 		<Icon -->
-					<!-- 			icon="material-symbols:logout" -->
-					<!-- 			class="size-6" -->
-					<!-- 		/> -->
-					<!-- 		Logout -->
-					<!-- 	</div> -->
-					<!-- </Button> -->
-
 					<Drawer.Close asChild let:builder>
 						<Button
 							builders={[builder]}

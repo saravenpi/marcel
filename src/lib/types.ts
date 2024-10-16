@@ -33,3 +33,10 @@ export type TodoType = {
 	title: string,
 	done: boolean
 }
+
+export type HabitType = {
+	id: string,
+	name: string,
+	completed: string[],
+	author: string
+}

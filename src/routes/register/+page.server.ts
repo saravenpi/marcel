@@ -44,7 +44,6 @@ export const actions = {
 			console.log(error)
 			return ERROR_RESPONSE("User creation failed")
 		}
-
 	}
 }
 

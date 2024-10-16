@@ -118,5 +118,48 @@ export const actions = {
 			const message = error instanceof Error ? error.message : "An unexpected error occurred.";
 			return ERROR_RESPONSE(`Event deletion failed: ${message}`);
 		}
+	},
+	updateEvent: async (event: RequestEvent): Promise<ServerResponse> => {
+		try {
+			// Extract data from the request
+			const data = await event.request.formData();
+			const eventId = data.get('eventId')?.toString().trim();
+			const title = data.get('title')?.toString().trim();
+			const description = data.get('description')?.toString().trim();
+			const date = data.get('date')?.toString().trim();
+			const address = data.get('address')?.toString().trim();
+
+			// Validate the event ID
+			if (!eventId) {
+				return ERROR_RESPONSE("Event ID is required.");
+			}
+
+			// Validate input fields
+			if (!title || !description || !date) {
+				return ERROR_RESPONSE("Title, description, and date are required.");
+			}
+
+			// Attempt to update the event
+			const updatedEvent = await client.collection("events").update(eventId, {
+				title,
+				description,
+				date,
+				address: address ? address : undefined
+			});
+
+			// Handle successful update
+			if (updatedEvent) {
+				return SUCCESS_RESPONSE("Event updated successfully.", updatedEvent);
+			} else {
+				return ERROR_RESPONSE("Failed to update the event.");
+			}
+		} catch (error: unknown) {
+			// Log the error for debugging purposes
+			console.error("Error updating event:", error);
+
+			// Return a detailed error message if possible
+			const message = error instanceof Error ? error.message : "An unexpected error occurred.";
+			return ERROR_RESPONSE(`Event update failed: ${message}`);
+		}
 	}
 };

@@ -13,7 +13,7 @@ const NON_AUTH_PAGES = [
 ]
 export const authentication: Handle = async ({ event, resolve }) => {
 	// auth
-	event.locals.user = authUser(event);
+	event.locals.user = await authUser(event);
 
 	// route safety
 	if (!event.locals.user && (NON_AUTH_PAGES.includes(event.url.pathname))) {
@@ -29,9 +29,6 @@ export const authentication: Handle = async ({ event, resolve }) => {
 		throw redirect(303, '/');
 	}
 
-	// user is authenticated and trying to access a non-auth page
-	// if (event.locals.user && (NON_AUTH_PAGES.includes(event.url.pathname)))
-	// 	throw redirect(303, '/events');
 
 	// hooks sequence
 	const response = await resolve(event);

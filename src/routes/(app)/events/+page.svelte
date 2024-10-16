@@ -14,7 +14,6 @@
 
 	function formatDate(date: string) {
 		date = date.replaceAll("/", "-");
-		console.log(date)
 		const options: Intl.DateTimeFormatOptions = {
 			weekday: "long",
 			year: "numeric",

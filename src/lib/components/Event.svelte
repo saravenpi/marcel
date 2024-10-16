@@ -5,18 +5,39 @@
 	import Modal from "./Modal.svelte";
 	import { Button } from "./ui/button";
 	import { toast } from "svelte-sonner";
+	import { Input } from "./ui/input";
+	import DateButton from "./DateButton.svelte";
+	import { Label } from "./ui/label";
+	import AddressButton from "./AddressButton.svelte";
 
 	// variables
 	export let event: EventType;
 	export let destroy: (eventId: string) => void;
 
-	let modal = false;
+	let modal: boolean = false;
+	let date: any;
+	let address: string | undefined = event.address;
+	let title: string = event.title;
+	let description: string = event.description;
 
 	function handleDelete(result: any) {
 		if (result.data && result.data.success) {
 			toast.success(result.data.message);
 			modal = false;
 			destroy(event.id);
+		} else {
+			toast.error(result.data.error);
+		}
+	}
+	function handleUpdate(result: any) {
+		if (result.data && result.data.success) {
+			toast.success(result.data.message);
+			modal = false;
+			event = result.data.data;
+			date = event.date;
+			address = event.address;
+			title = event.title;
+			description = event.description;
 		} else {
 			toast.error(result.data.error);
 		}
@@ -28,7 +49,59 @@
 </script>
 
 <Modal bind:open={modal} title={event.title} description={event.description}>
-	<div class="flex flex-row gap-3 w-full justify-evenly">
+	<div class="flex flex-col gap-3 w-full justify-evenly">
+		<!-- Event data -->
+		<div class="flex flex-row gap-2">
+			<span
+				class="text-md text-gray-800 dark:text-gray-300 flex flex-row place-items-center"
+			>
+				<Icon icon="mdi:calendar" class="mr-2 h-4" />
+				{formatDate(event.date)}
+			</span>
+			{#if event.address}
+				<span
+					class="text-md text-gray-800 dark:text-gray-300 flex flex-row place-items-center"
+				>
+					<Icon icon="mdi:location" class="mr-2 h-4 w-4" />
+					{event.address}
+				</span>
+			{/if}
+		</div>
+		<!-- Edit event form -->
+		<form
+			action="?/updateEvent"
+			method="POST"
+			use:enhance={() => {
+				return ({ result }) => {
+					handleUpdate(result);
+				};
+			}}
+			class="flex flex-col gap-3"
+		>
+			<Label for="title">Title</Label>
+			<Input
+				type="text"
+				name="title"
+				value={title}
+				placeholder="Pick a title"
+			/>
+
+			<Label for="description">Description</Label>
+			<Input type="text" name="description" value={description} />
+
+			<Label for="date">Date</Label>
+			<DateButton bind:value={date} />
+			<input type="hidden" name="date" bind:value={date} />
+
+			<Label for="address">Address</Label>
+			<AddressButton {address} />
+
+			<input type="hidden" name="eventId" value={event.id} />
+			<Button class="flex flex-row gap-2" type="submit">
+				<Icon icon="heroicons:pencil" class="size-5" />
+				Update
+			</Button>
+		</form>
 		<form
 			action="?/deleteEvent"
 			method="POST"

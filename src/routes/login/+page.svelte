@@ -3,6 +3,7 @@
 	import { Input } from "$lib/components/ui/input";
 	import { Button } from "$lib/components/ui/button/";
 	import { toast } from "svelte-sonner";
+	import { goto } from "$app/navigation";
 
 	let email: string = "";
 	let password: string = "";
@@ -10,7 +11,7 @@
 	function handleLogin(result: any) {
 		if (result.data && result.data.success) {
 			toast.success(result.data.message);
-			window.location.href = "/events";
+			goto("/events");
 		} else {
 			toast.error(result.data.error);
 		}

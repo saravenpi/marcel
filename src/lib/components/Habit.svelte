@@ -1,22 +1,44 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
-	import type { TodoType } from "$lib/types";
+	import type { HabitType } from "$lib/types";
 	import { toast } from "svelte-sonner";
 	import Modal from "./Modal.svelte";
 	import { Button } from "./ui/button";
 	import Icon from "@iconify/svelte";
+	import { Label } from "./ui/label";
+	import { Input } from "./ui/input";
 
 	// variables
+	export let habit: HabitType;
 	export let destroy: (todoId: string) => void;
-	export let todo: TodoType;
 
 	let modal = false;
+
+	// form data
+	let name: string = habit.name;
+
+	let streak = getStreakCount(habit.completed);
+
+	function getStreakCount(completed: string[]): number {
+		// check for all the completed dates to compute the streak
+		let count = 0;
+		let currentDate = new Date(completed[0]);
+		for (let i = 0; i < completed.length; i++) {
+			if (currentDate.toDateString() === completed[i]) {
+				count++;
+				currentDate.setDate(currentDate.getDate() + 1);
+			} else {
+				break;
+			}
+		}
+		return count;
+	}
 
 	function handleDelete(result: any) {
 		if (result.data && result.data.success) {
 			toast.success(result.data.message);
 			modal = false;
-			destroy(todo.id);
+			destroy(habit.id);
 		} else {
 			toast.error(result.data.error);
 		}
@@ -25,41 +47,45 @@
 		if (result.data && result.data.success) {
 			toast.success(result.data.message);
 			modal = false;
-			todo = result.data.data;
+			habit = result.data.data;
+			streak = getStreakCount(habit.completed);
 		} else {
 			toast.error(result.data.error);
 		}
 	}
+	console.log(habit);
 </script>
 
-<Modal bind:open={modal} title={todo.title} description="">
+<Modal bind:open={modal} title={habit.name} description="">
 	<div class="flex flex-col gap-3 w-full">
+		<!-- Edit habit form -->
 		<form
-			action="?/updateTodo"
+			action="?/updateHabit"
 			method="POST"
 			use:enhance={() => {
 				return ({ result }) => {
 					handleUpdate(result);
 				};
 			}}
+			class="flex flex-col gap-3"
 		>
-			<input type="hidden" name="todoId" value={todo.id} />
-			<input
-				type="hidden"
-				name="done"
-				value={todo.done ? "false" : "true"}
+			<Label for="name">Name</Label>
+			<Input
+				type="text"
+				name="name"
+				value={name}
+				placeholder="Pick a name"
 			/>
-			<Button
-				class="flex flex-row gap-2 w-full"
-				type="submit"
-				variant={todo.done ? "outline" : "default"}
-			>
-				{todo.done ? "Undone" : "Done"}
+
+			<input type="hidden" name="name" bind:value={name} />
+			<input type="hidden" name="habitId" value={habit.id} />
+			<Button class="flex flex-row gap-2" type="submit">
+				<Icon icon="heroicons:pencil" class="size-5" />
+				Update
 			</Button>
 		</form>
-
 		<form
-			action="?/deleteTodo"
+			action="?/deleteHabit"
 			method="POST"
 			use:enhance={() => {
 				return ({ result }) => {
@@ -67,7 +93,7 @@
 				};
 			}}
 		>
-			<input type="hidden" name="todoId" value={todo.id} />
+			<input type="hidden" name="habitId" value={habit.id} />
 			<Button class="flex flex-row gap-2 w-full" type="submit">
 				<Icon icon="heroicons:trash" class="size-5" />
 				Delete
@@ -80,7 +106,7 @@
 	<div class="flex flex-row justify-between place-items-center">
 		<div class="flex flex-row gap-3 place-items-center">
 			<form
-				action="?/updateTodo"
+				action="?/updateHabit"
 				method="POST"
 				use:enhance={() => {
 					return ({ result }) => {
@@ -88,33 +114,37 @@
 					};
 				}}
 			>
-				<input type="hidden" name="todoId" value={todo.id} />
+				<input type="hidden" name="habitId" value={habit.id} />
+				<input type="hidden" name="name" value={habit.name} />
 				<input
 					type="hidden"
-					name="done"
-					value={todo.done ? "false" : "true"}
+					name="completionDate"
+					value={new Date().toDateString()}
 				/>
 				<Button
 					class="flex flex-row gap-2 bg-transparent text-black dark:text-white p-0 hover:bg-neutral-700 hover:text-white dark:hover:text-black"
 					type="submit"
 				>
-					{#if todo.done}
+					{#if habit.completed.includes(new Date().toDateString())}
 						<Icon icon="jam:close" class="size-6" />
 					{:else}
 						<Icon icon="jam:check" class="size-6" />
 					{/if}
 				</Button>
 			</form>
-			{#if todo.done}
+			{#if habit.completed.includes(new Date().toDateString())}
 				<span
 					class="text-xl line-through text-neutral-700 dark:text-neutral-400"
-					>{todo.title}</span
+					>{habit.name}</span
 				>
 			{:else}
-				<span class="text-xl">{todo.title}</span>
+				<span class="text-xl">{habit.name}</span>
 			{/if}
 		</div>
 		<div class="flex flex-row gap-3 place-items-center">
+			<div class="text-xl">
+				🔥 {streak}
+			</div>
 			<Button
 				on:click={() => {
 					modal = true;

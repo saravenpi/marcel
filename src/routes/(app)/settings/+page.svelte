@@ -1,14 +1,20 @@
 <script lang="ts">
+	import { enhance } from "$app/forms";
+	import { goto } from "$app/navigation";
 	import LogoutButton from "$lib/components/LogoutButton.svelte";
+	import Modal from "$lib/components/Modal.svelte";
 	import { Button } from "$lib/components/ui/button";
 	import { Label } from "$lib/components/ui/label";
 	import type { User } from "$lib/types";
 	import Icon from "@iconify/svelte";
 	import { onMount } from "svelte";
+	import { toast } from "svelte-sonner";
 
 	export let data: { user: User };
 
 	let isDarkMode = false;
+
+	let modal = false;
 
 	onMount(() => {
 		// Check localStorage for a saved theme or use system preference
@@ -36,6 +42,16 @@
 			localStorage.setItem("theme", "light");
 		}
 	}
+	// function to handle add todo server result
+	function handleDelete(result: any) {
+		if (result.data && result.data.success) {
+			toast.success("Account deleted successfully!");
+			modal = false;
+			goto("/");
+		} else {
+			toast.error(result.data.error);
+		}
+	}
 </script>
 
 <div class="flex flex-col gap-6">
@@ -49,7 +65,7 @@
 
 	<!-- Settings card -->
 	<div
-		class="flex flex-col rounded-xl p-4 bg-neutral-100 dark:bg-neutral-800"
+		class="flex flex-col rounded-xl p-4 bg-neutral-100 dark:bg-neutral-800 gap-6"
 	>
 		<!-- Profile information -->
 		{#if data.user}
@@ -74,5 +90,41 @@
 			</Button>
 			<LogoutButton />
 		</div>
+
+		<!-- Danger zone -->
+		<div class="flex flex-col gap-3 rounded-xl border-red-500 border p-6">
+			<span class="text-2xl text-red-500">Danger zone</span>
+
+			<!-- Delete acccount button -->
+
+			<Button
+				on:click={() => (modal = true)}
+				class="flex flex-row gap-2 w-min bg-red-600"
+			>
+				<Icon icon="heroicons:trash" class="size-5" />
+				Delete account
+			</Button>
+		</div>
 	</div>
 </div>
+
+<Modal
+	bind:open={modal}
+	title="Delete your account"
+	description="It will delete all your data from Marcel"
+>
+	<form
+		action="?/deleteUser"
+		method="POST"
+		use:enhance={() => {
+			return ({ result }) => {
+				handleDelete(result);
+			};
+		}}
+	>
+		<Button type="submit" class="flex flex-row gap-2 w-full bg-red-600">
+			<Icon icon="heroicons:trash" class="size-5" />
+			Delete account
+		</Button>
+	</form>
+</Modal>
