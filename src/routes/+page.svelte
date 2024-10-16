@@ -15,7 +15,7 @@
 			<div class="flex flex-row gap-2 place-items-center">
 				<Button
 					href="/events"
-					class="bg-transparent text-white text-xl border-2 border-white"
+					class="bg-transparent text-white text-xl border border-white"
 					variant="outline">Open App</Button
 				>
 			</div>
@@ -24,7 +24,7 @@
 			<div class="flex flex-row gap-2">
 				<Button
 					href="/login"
-					class="text-white bg-transparent text-xl border-2 border-white"
+					class="text-white bg-transparent text-xl border border-white"
 					variant="outline">Login</Button
 				>
 			</div>
@@ -45,7 +45,8 @@
 			</span>
 			<Button
 				href="/register"
-				class="bg-transparent text-white text-xl border-2 border-white">Get Started</Button
+				class="bg-transparent text-white text-xl border border-white"
+				>Get Started</Button
 			>
 		</div>
 	</div>
@@ -55,6 +56,7 @@
 	#bg {
 		background: linear-gradient(270deg, #eeaeca, #94bbe9, #9571e4);
 		background-size: 600% 600%;
+		background: #161616;
 	}
 
 	.header {
