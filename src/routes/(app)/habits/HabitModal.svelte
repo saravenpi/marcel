@@ -9,7 +9,7 @@
 
 	// variables
 	export let modal = false;
-	export let habits: HabitType[];
+	export let habits: HabitType[] = [];
 
 	// form variables
 	let name: string = "";

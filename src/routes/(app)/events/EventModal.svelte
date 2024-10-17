@@ -11,11 +11,13 @@
 
 	// variables
 	export let eventModal = false;
-	export let events: EventType[];
+	export let events: EventType[] = [];
 	export let groupEventsByDay: (
 		events: EventType[],
-	) => { [key: string]: EventType[] };
-	export let groupedEvents: { [key: string]: EventType[] };
+	) => { [key: string]: EventType[] } = () => {
+		return {};
+	};
+	export let groupedEvents: { [key: string]: EventType[] } = {};
 
 	// form variables
 	let title: string = "";
@@ -60,7 +62,7 @@
 				value={description}
 				placeholder="Add a description"
 			/>
-			<AddressButton bind:address/>
+			<AddressButton bind:address />
 			<input type="hidden" name="address" bind:value={address} />
 			<DateButton bind:value={date} />
 			<input type="hidden" name="date" bind:value={date} />

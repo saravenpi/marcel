@@ -9,7 +9,7 @@
 
 	// variables
 	export let todoModal = false;
-	export let todos: TodoType[];
+	export let todos: TodoType[] = [];
 
 	// form variables
 	let title: string = "";
