@@ -65,7 +65,7 @@
 	</div>
 
 	{#if groupedEvents && Object.keys(groupedEvents).length > 0}
-		<ScrollArea orientation="vertical">
+		<ScrollArea orientation="vertical" class="-z-10">
 			{#each Object.keys(groupedEvents) as date}
 				<div class="group">
 					<h2 class="text-2xl font-semibold mt-4">
