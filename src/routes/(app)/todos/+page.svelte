@@ -31,7 +31,7 @@
 	</div>
 
 	{#if todos && todos.length > 0}
-		<ScrollArea>
+		<ScrollArea orientation="vertical">
 			<div class="flex flex-col gap-4">
 				{#each todos as todo}
 					<Todo {todo} destroy={destroyEvent} />

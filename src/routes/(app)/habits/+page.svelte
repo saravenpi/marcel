@@ -30,7 +30,7 @@
 	</div>
 
 	{#if habits && habits.length > 0}
-		<ScrollArea>
+		<ScrollArea orientation="vertical">
 			<div class="flex flex-col gap-4">
 				{#each habits as habit}
 					<Habit {habit} destroy={destroyHabit} />
