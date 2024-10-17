@@ -33,7 +33,7 @@
 
 {#if mobile}
 	<!-- nav (unchanged) -->
-	<div class="fixed bottom-4 left-1/2 transform -translate-x-1/2">
+	<div class="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-10">
 		<Button
 			on:click={() => (mobileNavOpen = !mobileNavOpen)}
 			class="rounded-lg shadow-lg"
