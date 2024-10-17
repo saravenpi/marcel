@@ -1,9 +1,6 @@
 <script lang="ts">
 	import CalendarIcon from "svelte-radix/Calendar.svelte";
-	import {
-		DateFormatter,
-		getLocalTimeZone,
-	} from "@internationalized/date";
+	import { DateFormatter, getLocalTimeZone } from "@internationalized/date";
 	import { cn } from "$lib/utils.js";
 	import { Calendar } from "$lib/components/ui/calendar/index.js";
 	import * as Popover from "$lib/components/ui/popover/index.js";

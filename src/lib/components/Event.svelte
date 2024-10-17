@@ -14,8 +14,18 @@
 	export let event: EventType;
 	export let destroy: (eventId: string) => void;
 
+	import { CalendarDate } from "@internationalized/date";
+
 	let modal: boolean = false;
-	let date: any;
+
+	function convertToDateValue(dateString: string): CalendarDate {
+		let year: number = new Date(dateString).getFullYear();
+		let month: number = new Date(dateString).getMonth();
+		let day: number = new Date(dateString).getDate();
+
+		return new CalendarDate(year, month, day);
+	}
+	let date: CalendarDate = convertToDateValue(event.date);
 	let address: string | undefined = event.address;
 	let title: string = event.title;
 	let description: string = event.description;
@@ -29,12 +39,13 @@
 			toast.error(result.data.error);
 		}
 	}
+
 	function handleUpdate(result: any) {
 		if (result.data && result.data.success) {
 			toast.success(result.data.message);
 			modal = false;
 			event = result.data.data;
-			date = event.date;
+			date = convertToDateValue(event.date);
 			address = event.address;
 			title = event.title;
 			description = event.description;
@@ -48,25 +59,8 @@
 	}
 </script>
 
-<Modal bind:open={modal} title={event.title} description={event.description}>
+<Modal bind:open={modal} title={event.title} description="">
 	<div class="flex flex-col gap-3 w-full justify-evenly">
-		<!-- Event data -->
-		<div class="flex flex-col md:flex-row gap-2 p-3">
-			<span
-				class="text-md text-gray-800 dark:text-gray-300 flex flex-row place-items-center"
-			>
-				<Icon icon="mdi:calendar" class="mr-2 h-4" />
-				{formatDate(event.date)}
-			</span>
-			{#if event.address}
-				<span
-					class="text-md text-gray-800 dark:text-gray-300 flex flex-row place-items-center"
-				>
-					<Icon icon="mdi:location" class="mr-2 h-4 w-4" />
-					{event.address}
-				</span>
-			{/if}
-		</div>
 		<!-- Edit event form -->
 		<form
 			action="?/updateEvent"
