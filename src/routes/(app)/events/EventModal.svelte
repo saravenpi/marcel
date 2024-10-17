@@ -14,10 +14,8 @@
 	export let events: EventType[] = [];
 	export let groupEventsByDay: (
 		events: EventType[],
-	) => { [key: string]: EventType[] } = () => {
-		return {};
-	};
-	export let groupedEvents: { [key: string]: EventType[] } = {};
+	) => { [key: string]: EventType[] };
+	export let groupedEvents: { [key: string]: EventType[] };
 
 	// form variables
 	let title: string = "";

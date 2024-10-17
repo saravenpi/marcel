@@ -4,6 +4,7 @@
 	import { type HabitType, type User } from "$lib/types";
 	import Icon from "@iconify/svelte";
 	import HabitModal from "./HabitModal.svelte";
+	import { ScrollArea } from "$lib/components/ui/scroll-area";
 	export let data: { habits: HabitType[]; user: User };
 
 	let habits: HabitType[] = data.habits;
@@ -29,9 +30,13 @@
 	</div>
 
 	{#if habits && habits.length > 0}
-		{#each habits as habit}
-			<Habit {habit} destroy={destroyHabit} />
-		{/each}
+		<ScrollArea>
+			<div class="flex flex-col gap-4">
+				{#each habits as habit}
+					<Habit {habit} destroy={destroyHabit} />
+				{/each}
+			</div>
+		</ScrollArea>
 	{:else}
 		<div class="text-center">No habits found</div>
 	{/if}

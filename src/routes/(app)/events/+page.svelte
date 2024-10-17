@@ -4,6 +4,7 @@
 	import type { EventType } from "$lib/types";
 	import EventModal from "./EventModal.svelte";
 	import Icon from "@iconify/svelte";
+    import { ScrollArea } from "$lib/components/ui/scroll-area";
 
 	export let data: { events: EventType[]; user: any };
 
@@ -64,16 +65,20 @@
 	</div>
 
 	{#if groupedEvents && Object.keys(groupedEvents).length > 0}
-		{#each Object.keys(groupedEvents) as date}
-			<div class="group">
-				<h2 class="text-2xl font-semibold mt-4">{formatDate(date)}</h2>
-				<div class="flex flex-col gap-2 mt-3">
-					{#each groupedEvents[date] as event}
-						<Event {event} destroy={destroyEvent} />
-					{/each}
+		<ScrollArea>
+			{#each Object.keys(groupedEvents) as date}
+				<div class="group">
+					<h2 class="text-2xl font-semibold mt-4">
+						{formatDate(date)}
+					</h2>
+					<div class="flex flex-col gap-2 mt-3">
+						{#each groupedEvents[date] as event}
+							<Event {event} destroy={destroyEvent} />
+						{/each}
+					</div>
 				</div>
-			</div>
-		{/each}
+			{/each}
+		</ScrollArea>
 	{:else}
 		<div class="text-center">No events found</div>
 	{/if}

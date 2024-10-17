@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Todo from "$lib/components/Todo.svelte";
+	import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
 	import { Button } from "$lib/components/ui/button";
 	import type { TodoType } from "$lib/types";
 	import Icon from "@iconify/svelte";
@@ -30,9 +31,13 @@
 	</div>
 
 	{#if todos && todos.length > 0}
-		{#each todos as todo}
-			<Todo {todo} destroy={destroyEvent} />
-		{/each}
+		<ScrollArea>
+			<div class="flex flex-col gap-4">
+				{#each todos as todo}
+					<Todo {todo} destroy={destroyEvent} />
+				{/each}
+			</div>
+		</ScrollArea>
 	{:else}
 		<div class="text-center">No todos found</div>
 	{/if}
