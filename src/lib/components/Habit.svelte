@@ -13,6 +13,9 @@
 	export let destroy: (todoId: string) => void;
 
 	let modal = false;
+	let todayDone = false;
+
+	todayDone = habit.completed.includes(new Date().toDateString());
 
 	// form data
 	let name: string = habit.name;
@@ -23,12 +26,18 @@
 		// check for all the completed dates to compute the streak
 		let count = 0;
 		let currentDate = new Date(completed[0]);
+
 		for (let i = 0; i < completed.length; i++) {
 			if (currentDate.toDateString() === completed[i]) {
 				count++;
 				currentDate.setDate(currentDate.getDate() + 1);
 			} else {
-				break;
+				currentDate.setDate(currentDate.getDate() + 1);
+				if (currentDate.toDateString() === new Date().toDateString()) {
+					count++;
+				} else {
+					break;
+				}
 			}
 		}
 		return count;
@@ -48,12 +57,12 @@
 			toast.success(result.data.message);
 			modal = false;
 			habit = result.data.data;
+			todayDone = habit.completed.includes(new Date().toDateString());
 			streak = getStreakCount(habit.completed);
 		} else {
 			toast.error(result.data.error);
 		}
 	}
-	console.log(habit);
 </script>
 
 <Modal bind:open={modal} title={habit.name} description="">
@@ -128,14 +137,14 @@
 					class="flex flex-row gap-2 bg-transparent text-black dark:text-white p-0 hover:bg-neutral-700 hover:text-white dark:hover:text-black"
 					type="submit"
 				>
-					{#if habit.completed.includes(new Date().toDateString())}
+					{#if todayDone}
 						<Icon icon="jam:close" class="size-6" />
 					{:else}
 						<Icon icon="jam:check" class="size-6" />
 					{/if}
 				</Button>
 			</form>
-			{#if habit.completed.includes(new Date().toDateString())}
+			{#if todayDone}
 				<span
 					class="text-xl line-through text-neutral-700 dark:text-neutral-400"
 					>{habit.name}</span

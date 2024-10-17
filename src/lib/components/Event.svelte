@@ -20,12 +20,12 @@
 
 	function convertToDateValue(dateString: string): CalendarDate {
 		let year: number = new Date(dateString).getFullYear();
-		let month: number = new Date(dateString).getMonth();
+		let month: number = new Date(dateString).getMonth() + 1;
 		let day: number = new Date(dateString).getDate();
 
 		return new CalendarDate(year, month, day);
 	}
-	let date: CalendarDate = convertToDateValue(event.date);
+	let date: any = convertToDateValue(event.date);
 	let address: string | undefined = event.address;
 	let title: string = event.title;
 	let description: string = event.description;

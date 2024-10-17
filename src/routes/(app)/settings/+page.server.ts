@@ -46,7 +46,6 @@ export const actions = {
 				return ERROR_RESPONSE("User not found.");
 			}
 
-			console.log("Deleting user account:", user.id);
 			client.authStore.loadFromCookie(event.cookies.get("pbUser") as string);
 			if (!client.authStore.isValid) {
 				return ERROR_RESPONSE("User not found.");
@@ -54,7 +53,6 @@ export const actions = {
 
 			// Attempt to delete the user account
 			const deletionResult = await client.collection("users").delete(user.id)
-			console.log(deletionResult)
 
 			// Check if the deletion was successful
 			if (deletionResult) {
