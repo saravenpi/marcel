@@ -82,8 +82,6 @@
 				{/each}
 			</div>
 		</ScrollArea>
-	{:else}
-		<div class="text-center">No notes found</div>
 	{/if}
 
 	<!-- Ressources -->
@@ -102,7 +100,5 @@
 				{/each}
 			</div>
 		</ScrollArea>
-	{:else}
-		<div class="text-center">No notes found</div>
 	{/if}
 </div>

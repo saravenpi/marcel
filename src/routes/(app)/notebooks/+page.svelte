@@ -13,7 +13,8 @@
 	let modal = false;
 </script>
 
-<CreateNotebookModal bind:open={modal} />
+<CreateNotebookModal bind:open={modal} bind:notebooks/>
+
 <div class="flex flex-row justify-between place-items-center">
 	<div class="text-3xl md:text-5xl">
 		<Icon icon="carbon:notebook" class="w-12 h-12 inline-block" />
