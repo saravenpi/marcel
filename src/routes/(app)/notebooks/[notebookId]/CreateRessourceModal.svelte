@@ -5,20 +5,20 @@
 	import { Input } from "$lib/components/ui/input";
 	import { Label } from "$lib/components/ui/label";
 	import { toast } from "svelte-sonner";
-	import type { NotebookType } from "$lib/types";
+	import type { RessourceType } from "$lib/types";
 	import * as Select from "$lib/components/ui/select/index.js";
 
 	export let open = false;
-	export let notebooks: NotebookType[] = [];
+	export let ressources: RessourceType[] = [];
 	export let notebookId: string;
 
 	let selectedRessourceType: any;
 
 	function handleCreate(result: any) {
 		if (result.data && result.data.success) {
-			toast.success(result.data.message)
+			toast.success(result.data.message);
 			open = false;
-			notebooks = [...notebooks, result.data.notebook];
+			ressources = [...ressources, result.data.data];
 		} else {
 			toast.error(result.data.error);
 		}

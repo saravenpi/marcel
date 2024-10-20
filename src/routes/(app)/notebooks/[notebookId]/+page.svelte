@@ -29,8 +29,8 @@
 </script>
 
 <!-- Go back to notebooks button -->
-<CreateRessourceModal bind:open={ressourceModal} notebookId={notebook.id} />
-<CreateNoteModal bind:open={noteModal} notebookId={notebook.id} />
+<CreateRessourceModal bind:open={ressourceModal} notebookId={notebook.id} bind:ressources/>
+<CreateNoteModal bind:open={noteModal} notebookId={notebook.id} bind:notes />
 
 <div class="p-6 flex flex-row place-items-center justify-between">
 	<a href="/notebooks">
@@ -73,7 +73,9 @@
 		<div class="text-3xl flex flex-row place-items-center gap-2">
 			<Icon icon="material-symbols:note" class="size-7" />
 			<span>Notes</span>
-			<span class="text-neutral-200 text-lg">{notes.length} found</span>
+			<span class="text-neutral-600 dark:text-neutral-200 text-lg"
+				>{notes.length} found</span
+			>
 		</div>
 		<ScrollArea orientation="vertical" class="mb-[60px]">
 			<div class="flex flex-col gap-4 p-3">
@@ -89,7 +91,7 @@
 		<div class="text-3xl flex flex-row place-items-center gap-2">
 			<Icon icon="material-symbols:link" class="size-7" />
 			Ressources
-			<span class="text-neutral-200 text-lg"
+			<span class="text-neutral-600 dark:text-neutral-200 text-lg"
 				>{ressources.length} found</span
 			>
 		</div>
