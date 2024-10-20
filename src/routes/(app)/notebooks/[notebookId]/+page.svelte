@@ -70,10 +70,11 @@
 
 	<!-- Notes -->
 	{#if notes && notes.length > 0}
-		<span class="text-3xl flex flex-row place-items-center gap-2">
+		<div class="text-3xl flex flex-row place-items-center gap-2">
 			<Icon icon="material-symbols:note" class="size-7" />
-			Notes
-		</span>
+			<span>Notes</span>
+			<span class="text-neutral-200 text-lg">{notes.length} found</span>
+		</div>
 		<ScrollArea orientation="vertical" class="mb-[60px]">
 			<div class="flex flex-col gap-4 p-3">
 				{#each notes as note}
@@ -86,11 +87,14 @@
 	{/if}
 
 	<!-- Ressources -->
-	{#if notes && notes.length > 0}
-		<span class="text-3xl flex flex-row place-items-center gap-2">
+	{#if ressources && ressources.length > 0}
+		<div class="text-3xl flex flex-row place-items-center gap-2">
 			<Icon icon="material-symbols:link" class="size-7" />
 			Ressources
-		</span>
+			<span class="text-neutral-200 text-lg"
+				>{ressources.length} found</span
+			>
+		</div>
 		<ScrollArea orientation="vertical" class="mb-[60px]">
 			<div class="flex flex-col gap-4 p-3">
 				{#each ressources as ressource}
