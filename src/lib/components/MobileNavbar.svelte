@@ -7,6 +7,7 @@
 	import { Button } from "$lib/components/ui/button";
 	import { Separator } from "$lib/components/ui/separator";
 	import * as Avatar from "$lib/components/ui/avatar";
+	import pages from "$lib/pages";
 
 	// variables
 	export let open: boolean; // sidebar state
@@ -24,9 +25,9 @@
 					<Drawer.Title class="text-3xl"
 						><a href="/">🧘 Marcel</a></Drawer.Title
 					>
-					<Drawer.Description class="text-xl"
-						>Navigation</Drawer.Description
-					>
+					<Drawer.Description class="text-xl">
+						Navigation
+					</Drawer.Description>
 
 					{#if avatarUrl}
 						<Avatar.Root class="justify-start ml-2 mx-auto size-16">
@@ -38,52 +39,18 @@
 
 				<div class="center p-5">
 					<div class="flex flex-col w-full gap-2 text-2xl">
-						<Button
-							href="/events"
-							variant={activePath === "/events"
-								? "default"
-								: "outline"}
-							class="flex flex-row gap-2"
-						>
-							<Icon icon="heroicons:calendar" class="size-5" />
-							Events
-						</Button>
-						<Button
-							href="/todos"
-							variant={activePath === "/todos"
-								? "default"
-								: "outline"}
-							class="flex flex-row gap-2"
-						>
-							<Icon
-								icon="heroicons:check-circle"
-								class="size-5"
-							/>
-							Todos
-						</Button>
-						<Button
-							href="/habits"
-							variant={activePath === "/habits"
-								? "default"
-								: "outline"}
-							class="flex flex-row gap-2"
-						>
-							<Icon
-								icon="iconoir:calendar-check"
-								class="size-5"
-							/>
-							Habits
-						</Button>
-						<Button
-							href="/settings"
-							variant={activePath === "/settings"
-								? "default"
-								: "outline"}
-							class="flex flex-row gap-2"
-						>
-							<Icon icon="heroicons:cog" class="size-5" />
-							Settings
-						</Button>
+						{#each pages as { href, icon, label }}
+							<Button
+								{href}
+								variant={activePath === href
+									? "default"
+									: "outline"}
+								class="flex flex-row gap-2"
+							>
+								<Icon {icon} class="size-5" />
+								{label}
+							</Button>
+						{/each}
 					</div>
 				</div>
 

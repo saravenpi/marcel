@@ -40,3 +40,36 @@ export type HabitType = {
 	completed: string[],
 	author: string
 }
+
+export enum RessourceTypeEnum {
+	VIDEO = "video",
+	TEXT = "text",
+	PDF = "pdf",
+}
+
+export type RessourceType = {
+	id: string,
+	author: string,
+	name: string,
+	content: string,
+	type: RessourceTypeEnum,
+	notebook: string,
+}
+
+export type NotebookType = {
+	id: string,
+	author: string,
+	name: string,
+	description: string,
+	notes: string[],
+	ressources: string[],
+}
+
+export type NoteType = {
+	id: string,
+	author: string,
+	title: string,
+	content: string,
+	ressources: string[],
+	notebook: string
+}

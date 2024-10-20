@@ -65,7 +65,7 @@
 
 	<!-- Settings card -->
 	<div
-		class="flex flex-col rounded-xl p-4 bg-neutral-100 dark:bg-neutral-800 gap-6"
+		class="flex flex-col rounded-xl p-4 bg-neutral-100 dark:bg-[#161616] gap-6"
 	>
 		<!-- Profile information -->
 		{#if data.user}

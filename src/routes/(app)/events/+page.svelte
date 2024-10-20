@@ -60,7 +60,7 @@
 			class="flex flex-row gap-2"
 		>
 			<Icon icon="heroicons:plus" class="size-5" />
-			Create Event
+			<span class="hidden md:flex">Create Event</span>
 		</Button>
 	</div>
 

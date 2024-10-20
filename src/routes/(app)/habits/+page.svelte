@@ -25,7 +25,7 @@
 		>
 		<Button on:click={() => (modal = true)} class="flex flex-row gap-2">
 			<Icon icon="heroicons:plus" class="size-5" />
-			Create Habit
+			<span class="hidden md:flex">Create Habit</span>
 		</Button>
 	</div>
 

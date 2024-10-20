@@ -84,7 +84,7 @@
 	</div>
 </Modal>
 
-<div class="rounded-xl flex flex-col p-3 bg-neutral-100 dark:bg-neutral-800">
+<div class="rounded-xl flex flex-col p-3 container">
 	<div class="flex flex-row justify-between place-items-center">
 		<div class="flex flex-row gap-3 place-items-center">
 			<form

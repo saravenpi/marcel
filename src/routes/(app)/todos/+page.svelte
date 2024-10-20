@@ -12,7 +12,7 @@
 	let todoModal = false;
 
 	// Function to destroy todo by id
-	function destroyEvent(todoId: string) {
+	function destroyTodo(todoId: string) {
 		todos = todos.filter((todo) => todo.id !== todoId);
 	}
 </script>
@@ -26,7 +26,7 @@
 		>
 		<Button on:click={() => (todoModal = true)} class="flex flex-row gap-2">
 			<Icon icon="heroicons:plus" class="size-5" />
-			Create Todo
+			<span class="hidden md:flex">Create Todo</span>
 		</Button>
 	</div>
 
@@ -34,7 +34,7 @@
 		<ScrollArea orientation="vertical" class="mb-[60px]">
 			<div class="flex flex-col gap-4">
 				{#each todos as todo}
-					<Todo {todo} destroy={destroyEvent} />
+					<Todo {todo} destroy={destroyTodo} />
 				{/each}
 			</div>
 		</ScrollArea>

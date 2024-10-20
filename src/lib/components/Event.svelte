@@ -116,7 +116,7 @@
 		</form>
 	</div>
 </Modal>
-<div class="rounded-xl flex flex-col p-5 bg-neutral-100 dark:bg-neutral-800">
+<div class="rounded-xl flex flex-col p-5 container">
 	<div class="flex flex-row justify-between">
 		<span class="text-2xl">{event.title}</span>
 		<Button
