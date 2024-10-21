@@ -104,7 +104,8 @@
 		>
 			<input type="hidden" name="habitId" value={habit.id} />
 			<Button
-				class="flex flex-row gap-2 w-full bg-transparent border text-white"
+				class="flex flex-row gap-2 w-full"
+				variant="outline"
 				type="submit"
 			>
 				<Icon icon="heroicons:trash" class="size-5" />
