@@ -28,7 +28,11 @@
 </script>
 
 <!-- Go back to notebooks button -->
-<CreateRessourceModal bind:open={ressourceModal} notebookId={notebook.id} bind:ressources/>
+<CreateRessourceModal
+	bind:open={ressourceModal}
+	notebookId={notebook.id}
+	bind:ressources
+/>
 <CreateNoteModal bind:open={noteModal} notebookId={notebook.id} bind:notes />
 
 <div class="p-6 flex flex-row place-items-center justify-between">
