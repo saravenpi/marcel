@@ -6,7 +6,6 @@
 	import CreateNoteModal from "./CreateNoteModal.svelte";
 	import { ScrollArea } from "$lib/components/ui/scroll-area";
 	import Note from "$lib/components/Note.svelte";
-	import ResizableHandle from "$lib/components/ui/resizable/resizable-handle.svelte";
 	import Ressource from "$lib/components/Ressource.svelte";
 
 	export let data: {

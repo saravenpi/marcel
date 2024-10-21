@@ -9,19 +9,20 @@
 </script>
 
 <a href={"/notes/" + note.id}>
-	<div
-		class="container p-4 rounded-xl flex flex-row justify-between place-items-center"
-	>
-		<div class="flex flex-row gap-2 place-items-center">
-			<span class="text-2xl">{note.title}</span>
-			{#if displayBadge}
-				{#if note.notebook}
-					<Badge>{note.notebook}</Badge>
-				{:else}
-					<Badge>All</Badge>
+	<div class="container rounded-xl flex flex-col p-4">
+		<div class=" flex flex-row justify-between place-items-center">
+			<div class="flex flex-row gap-2 place-items-center">
+				<span class="text-2xl">{note.title}</span>
+				{#if displayBadge}
+					{#if note.notebook}
+						<Badge>{note.notebook}</Badge>
+					{:else}
+						<Badge>All</Badge>
+					{/if}
 				{/if}
-			{/if}
+			</div>
+			<Icon icon="akar-icons:chevron-right" class="text-2xl" />
 		</div>
-		<Icon icon="akar-icons:chevron-right" class="text-2xl" />
+		<span class="text-md truncate max-w-[200px]">{note.content}</span>
 	</div>
 </a>
