@@ -39,9 +39,12 @@
 	description="This ressource is currently used by the AI"
 >
 	<div class="flex flex-col gap-3 w-full">
+		<Label for="type">Type</Label>
+		<Badge class="w-min">{ressource.type}</Badge>
 		<Label for="content">Content</Label>
 		{#if ressource.type == "video"}
-			<a href={ressource.content} class="underline">{ressource.content}</a>
+			<a href={ressource.content} class="underline">{ressource.content}</a
+			>
 		{:else}
 			<span>{ressource.content}</span>
 		{/if}
@@ -87,7 +90,7 @@
 		<div class="flex flex-row gap-2 place-items-center">
 			<span class="text-2xl truncate max-w-[200px]">{ressource.name}</span
 			>
-			<Badge class="text-md text-neutral-200">{ressource.type}</Badge>
+			<Badge>{ressource.type}</Badge>
 		</div>
 		{#if ressource.type == "video"}
 			<a
@@ -102,7 +105,7 @@
 		{/if}
 	</div>
 	<Button
-		class="p-0 bg-transparent"
+		class="p-0 bg-transparent text-black dark:text-white"
 		on:click={() => {
 			modal = true;
 		}}

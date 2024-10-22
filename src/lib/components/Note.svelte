@@ -16,9 +16,9 @@
 			<span class="text-2xl">{note.title}</span>
 			{#if displayBadge}
 				{#if note.notebook}
-					<Badge>{note.notebook}</Badge>
+					<Badge class="w-min">{note.notebook}</Badge>
 				{:else}
-					<Badge>All</Badge>
+					<Badge class="w-min">All</Badge>
 				{/if}
 			{/if}
 			<span class="text-md truncate max-w-[200px]">{note.content}</span>
