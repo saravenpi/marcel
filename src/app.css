@@ -2,9 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
 	:root {
-		--background: 48 45% 98%;
+		--background: 0 0% 100%;
 		--foreground: 222.2 84% 4.9%;
 
 		--muted: 210 40% 96.1%;
@@ -17,9 +18,9 @@
 		--card-foreground: 222.2 84% 4.9%;
 
 		--border: 214.3 31.8% 91.4%;
-		--input: 118 15% 39%;
+		--input: 214.3 31.8% 91.4%;
 
-		--primary: 118 15% 39%;
+		--primary: 222.2 47.4% 11.2%;
 		--primary-foreground: 210 40% 98%;
 
 		--secondary: 210 40% 96.1%;
@@ -37,16 +38,11 @@
 	}
 
 	.container {
-		background: #759674;
-		color: white;
-	}
-
-	.container:hover {
-		background: #567455;
+		@apply bg-neutral-200 dark:bg-neutral-800 text-black dark:text-white rounded-xl
 	}
 
 	.dark {
-		--background: 0 0% 8%;
+		--background: 0 0% 9%;
 		--foreground: 210 40% 98%;
 
 		--muted: 217.2 32.6% 17.5%;
@@ -59,9 +55,9 @@
 		--card-foreground: 210 40% 98%;
 
 		--border: 0 0% 100%;
-		--input: 118 15% 39%;
+		--input: #eeeeee;
 
-		--primary: 118 15% 39%;
+		--primary: 210 40% 98%;
 		--primary-foreground: 222.2 47.4% 11.2%;
 
 		--secondary: 0 0% 100%;
@@ -74,7 +70,6 @@
 		--destructive-foreground: 210 40% 98%;
 
 		--ring: 0 0% 100%;
-		--container: 32 26% 63%;
 	}
 }
 

@@ -35,11 +35,11 @@
 	>
 		<div>
 			<Label for="name">Name</Label>
-			<Input type="text" id="name" name="name" />
+			<Input type="text" id="name" name="name" placeholder="Pick a name"/>
 		</div>
 		<div>
 			<Label for="description">Description</Label>
-			<Textarea id="description" name="description"></Textarea>
+			<Textarea id="description" name="description" placeholder="Pick a description"></Textarea>
 		</div>
 		<div>
 			<Button type="submit" variant="default">Create Notebook</Button>

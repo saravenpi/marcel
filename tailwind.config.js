@@ -61,7 +61,8 @@ const config = {
 				dark: "#161616",
 				// "secondary": "#F9FAFB"
 			}
-		}
+		},
+
 	},
 };
 
