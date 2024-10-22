@@ -113,9 +113,11 @@
 
 	<!-- Notes -->
 	{#if notes && notes.length > 0}
-		<div class="text-3xl flex flex-row place-items-center gap-2">
-			<Icon icon="material-symbols:note" class="size-7" />
-			<span>Notes</span>
+		<div class="flex flex-row place-items-center gap-2">
+			<div class="flex flex-row gap-2 place-items-center">
+				<Icon icon="material-symbols:note" class="size-7" />
+				<span class="text-3xl">Notes</span>
+			</div>
 			<span class="text-neutral-600 dark:text-neutral-200 text-lg"
 				>{notes.length} found</span
 			>
@@ -131,9 +133,11 @@
 
 	<!-- Ressources -->
 	{#if ressources && ressources.length > 0}
-		<div class="text-3xl flex flex-row place-items-center gap-2">
-			<Icon icon="material-symbols:link" class="size-7" />
-			Ressources
+		<div class=" flex flex-row place-items-center gap-2">
+			<div class="flex flex-row gap-2 place-items-center">
+				<Icon icon="material-symbols:link" class="size-7" />
+				<span class="text-3xl">Ressources</span>
+			</div>
 			<span class="text-neutral-600 dark:text-neutral-200 text-lg"
 				>{ressources.length} found</span
 			>
