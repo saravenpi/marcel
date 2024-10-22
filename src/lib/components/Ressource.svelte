@@ -6,7 +6,7 @@
 	import { Button } from "./ui/button";
 	import Modal from "./Modal.svelte";
 	import { toast } from "svelte-sonner";
-    import { Label } from "./ui/label";
+	import { Label } from "./ui/label";
 
 	export let ressource: RessourceType;
 	export let notebookId: string;
@@ -40,7 +40,11 @@
 >
 	<div class="flex flex-col gap-3 w-full">
 		<Label for="content">Content</Label>
-		<span>{ressource.content}</span>
+		{#if ressource.type == "video"}
+			<a href={ressource.content} class="underline">{ressource.content}</a>
+		{:else}
+			<span>{ressource.content}</span>
+		{/if}
 		<form
 			action="?/updateRessource"
 			method="POST"
@@ -87,7 +91,7 @@
 		</div>
 		{#if ressource.type == "video"}
 			<a
-				class="hidden md:flex text-md truncate max-w-[200px] text-blue-300"
+				class="hidden md:flex text-md truncate max-w-[200px] text-blue-300 underline"
 				href={ressource.content}
 				target="_blank">{ressource.content}</a
 			>
