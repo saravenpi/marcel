@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import { Button } from "$lib/components/ui/button";
 	import type { NotebookType, NoteType, RessourceType } from "$lib/types";
 	import Icon from "@iconify/svelte";
@@ -21,9 +22,44 @@
 	let noteModal = false;
 	let ressourceModal = false;
 
+	let summary = "Loading summary..."; // Initially, loading state for the summary
+
+	// Fetch the AI summary when the component is mounted
+	onMount(async () => {
+		try {
+			const url = `/api/summary`;
+			const response = await fetch(url, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					ressources: ressources,
+				}),
+			});
+
+			if (response.ok) {
+				const result = await response.json();
+				summary = result.summary || "No summary available.";
+			} else {
+				summary = "Failed to load summary.";
+			}
+		} catch (error) {
+			console.error("Error fetching summary:", error);
+			summary = "Error fetching summary.";
+		}
+	});
+
 	// Function to destroy note by id
 	function destroyNote(noteId: string) {
 		notes = notes.filter((note) => note.id !== noteId);
+	}
+
+	// Function to destroy note by id
+	function destroyRessource(ressourceId: string) {
+		ressources = ressources.filter(
+			(ressource) => ressource.id !== ressourceId,
+		);
 	}
 </script>
 
@@ -68,8 +104,12 @@
 		<span>{notebook.name}</span>
 	</div>
 
-	<!-- Desription -->
+	<!-- Description -->
 	<div class="px-6 text-2xl pb-6">{notebook.description}</div>
+
+	<!-- AI Summary -->
+	<div class="px-6 text-3xl pb-6">AI Summary</div>
+	<div class="px-6 text-2xl pb-6">{summary}</div>
 
 	<!-- Notes -->
 	{#if notes && notes.length > 0}
@@ -101,7 +141,11 @@
 		<ScrollArea orientation="vertical" class="mb-[60px]">
 			<div class="flex flex-col gap-4 p-3">
 				{#each ressources as ressource}
-					<Ressource {ressource} />
+					<Ressource
+						{ressource}
+						destroy={destroyRessource}
+						notebookId={notebook.id}
+					/>
 				{/each}
 			</div>
 		</ScrollArea>

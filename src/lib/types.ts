@@ -1,3 +1,10 @@
+export type ServerResponse = {
+	success: boolean,
+	message: string,
+	error: string,
+	data: any | null
+}
+
 export type PBUser = {
 	username: string,
 	email: string,
@@ -10,14 +17,12 @@ export type User = {
 	id: string,
 	username: string,
 	password: string,
-	email: string
-}
-
-export type ServerResponse = {
-	success: boolean,
-	message: string,
-	error: string,
-	data: any | null
+	email: string,
+	xp: number,
+	xpMax: number,
+	level: number,
+	golds: number,
+	gems: number,
 }
 
 export type EventType = {
@@ -32,13 +37,15 @@ export type TodoType = {
 	id: string,
 	title: string,
 	done: boolean
+	difficulty: number,
 }
 
 export type HabitType = {
 	id: string,
 	name: string,
 	completed: string[],
-	author: string
+	author: string,
+	difficulty: number,
 }
 
 export enum RessourceTypeEnum {

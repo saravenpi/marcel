@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
 import type { PageServerLoad } from './$types';
-import { RessourceTypeEnum, type NotebookType, type User } from '$lib/types'; // Adjust these imports to match your type definitions
+import { RessourceTypeEnum, type NotebookType, type NoteType, type RessourceType, type User } from '$lib/types'; // Adjust these imports to match your type definitions
 import { PB_URL } from '$env/static/private';
 import { ERROR_RESPONSE, SUCCESS_RESPONSE } from '$lib/response';
 
@@ -53,12 +53,12 @@ export const load: PageServerLoad = async (event) => {
 		}
 
 		// Fetch all notes related to this notebook
-		const notes = await client.collection('notes').getFullList({
+		const notes: NoteType[] = await client.collection('notes').getFullList<NoteType>({
 			filter: `notebook = "${notebookId}"`, // Filter by notebook ID
 		});
 
 		// Fetch all ressources related to this notebook
-		const ressources = await client.collection('ressources').getFullList({
+		const ressources: RessourceType[] = await client.collection('ressources').getFullList<RessourceType>({
 			filter: `notebook = "${notebookId}"`, // Filter by notebook ID
 		});
 
@@ -67,7 +67,7 @@ export const load: PageServerLoad = async (event) => {
 			user,
 			notebook,
 			notes,
-			ressources
+			ressources,
 		};
 	} catch (error) {
 		console.error('Error fetching notebook, notes, or ressources:', error);
@@ -199,7 +199,61 @@ const createRessource = async (event: any) => {
 	}
 }
 
+const deleteRessource = async (event: any) => {
+	const formData = await event.request.formData();
+
+	// Get the ressource ID and notebook ID from the request form data
+	const ressourceId = formData.get('ressourceId') as string | null;
+	const notebookId = formData.get('notebookId') as string | null;
+
+	// Validate required fields
+	if (!ressourceId || !notebookId) {
+		return ERROR_RESPONSE('Missing required fields: ressourceId or notebookId.');
+	}
+
+	// Fetch the user from the locals
+	const user: User | null = event.locals.user;
+
+	// Ensure the user exists
+	if (!user) {
+		return ERROR_RESPONSE('User not found');
+	}
+
+	// Fetch the ressource to ensure it exists and belongs to the user
+	let ressourceRecord;
+	try {
+		ressourceRecord = await client.collection('ressources').getOne(ressourceId);
+
+		// Check if the user is the author of the resource
+		if (ressourceRecord.author !== user.id) {
+			return ERROR_RESPONSE('Unauthorized: You do not have permission to delete this ressource.');
+		}
+	} catch (error) {
+		console.error('Error fetching ressource:', error);
+		return ERROR_RESPONSE('Ressource not found');
+	}
+
+	// Delete the ressource record
+	try {
+		await client.collection('ressources').delete(ressourceId);
+
+		// Optionally update the notebook to remove the deleted ressource
+		const notebookRecord = await client.collection('notebooks').getOne(notebookId);
+		const updatedRessources = notebookRecord.ressources.filter((id: string) => id !== ressourceId);
+
+		await client.collection('notebooks').update(notebookId, {
+			ressources: updatedRessources
+		});
+
+		return SUCCESS_RESPONSE('Ressource deleted successfully');
+	} catch (error) {
+		console.error('Error deleting ressource:', error);
+		return ERROR_RESPONSE('Failed to delete ressource');
+	}
+};
+
 export const actions = {
 	addNote,
-	createRessource
+	createRessource,
+	deleteRessource
 };
