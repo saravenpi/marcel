@@ -13,16 +13,16 @@
 			<span class="text-2xl text-black dark:text-white">
 				{notebook.name}</span
 			>
-			<span class="text-xl text-neutral-200 hidden md:flex"
+			<span class="text-xl description hidden md:flex"
 				>{notebook.notes.length} note{notebook.notes.length > 1
 					? "s"
 					: ""}</span
 			>
 			<Icon
 				icon="material-symbols:circle"
-				class="h-2 w-2 text-neutral-200 hidden md:flex"
+				class="h-2 w-2 description hidden md:flex"
 			/>
-			<span class="text-xl text-neutral-200 hidden md:flex"
+			<span class="text-xl description hidden md:flex"
 				>{notebook.ressources.length} ressource{notebook.ressources
 					.length > 1
 					? "s"

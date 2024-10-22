@@ -5,6 +5,7 @@
 	import Icon from "@iconify/svelte";
 	import HabitModal from "./HabitModal.svelte";
 	import { ScrollArea } from "$lib/components/ui/scroll-area";
+    import { Separator } from "$lib/components/ui/separator";
 	export let data: { habits: HabitType[]; user: User };
 
 	let habits: HabitType[] = data.habits;
@@ -29,6 +30,7 @@
 		</Button>
 	</div>
 
+	<Separator class="m-0" />
 	{#if habits && habits.length > 0}
 		<ScrollArea orientation="vertical" class="mb-[60px]">
 			<div class="flex flex-col gap-4">

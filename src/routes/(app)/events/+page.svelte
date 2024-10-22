@@ -5,6 +5,7 @@
 	import EventModal from "./EventModal.svelte";
 	import Icon from "@iconify/svelte";
 	import { ScrollArea } from "$lib/components/ui/scroll-area";
+	import { Separator } from "$lib/components/ui/separator";
 
 	export let data: { events: EventType[]; user: any };
 
@@ -64,6 +65,7 @@
 		</Button>
 	</div>
 
+	<Separator class="m-0" />
 	{#if groupedEvents && Object.keys(groupedEvents).length > 0}
 		<ScrollArea orientation="vertical" class="mb-[60px]">
 			{#each Object.keys(groupedEvents) as date}

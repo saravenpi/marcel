@@ -5,6 +5,7 @@
 	import type { TodoType } from "$lib/types";
 	import Icon from "@iconify/svelte";
 	import TodoModal from "./TodoModal.svelte";
+	import { Separator } from "$lib/components/ui/separator";
 
 	export let data: { todos: TodoType[] };
 
@@ -29,6 +30,8 @@
 			<span class="hidden md:flex">Create Todo</span>
 		</Button>
 	</div>
+
+	<Separator class="m-0" />
 
 	{#if todos && todos.length > 0}
 		<ScrollArea orientation="vertical" class="mb-[60px]">

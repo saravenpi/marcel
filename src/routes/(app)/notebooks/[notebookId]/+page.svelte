@@ -8,6 +8,7 @@
 	import { ScrollArea } from "$lib/components/ui/scroll-area";
 	import Note from "$lib/components/Note.svelte";
 	import Ressource from "$lib/components/Ressource.svelte";
+	import { Separator } from "$lib/components/ui/separator";
 
 	export let data: {
 		notebook: NotebookType;
@@ -105,11 +106,12 @@
 	</div>
 
 	<!-- Description -->
-	<div class="px-6 text-2xl pb-6">{notebook.description}</div>
+	<div class="px-6 text-2xl pb-6 description">{notebook.description}</div>
 
+	<Separator class="mb-6" />
 	<!-- AI Summary -->
-	<div class="px-6 text-3xl pb-6">AI Summary</div>
-	<div class="px-6 text-2xl pb-6">{summary}</div>
+	<!-- <div class="px-6 text-3xl pb-6">AI Summary</div> -->
+	<!-- <div class="px-6 text-2xl pb-6">{summary}</div> -->
 
 	<!-- Notes -->
 	{#if notes && notes.length > 0}

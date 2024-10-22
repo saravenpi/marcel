@@ -38,7 +38,12 @@
 	}
 
 	.container {
-		@apply bg-neutral-200 dark:bg-neutral-800 text-black dark:text-white rounded-xl
+		@apply bg-transparent rounded-xl border text-black dark:text-white hover:dark:bg-[#27272A] hover:bg-[#F4F4F5] hover:dark:border-[#27272A] hover:border-[#F4F4F5];
+		@apply transition duration-100 ease-in-out
+	}
+
+	.description {
+		@apply text-[#71717A] dark:text-[#A1A1AA] text-lg
 	}
 
 	.dark {
@@ -54,13 +59,13 @@
 		--card: 222.2 84% 4.9%;
 		--card-foreground: 210 40% 98%;
 
-		--border: 0 0% 100%;
-		--input: #eeeeee;
+		--border: #27272A;
+		--input: #27272A;
 
 		--primary: 210 40% 98%;
 		--primary-foreground: 222.2 47.4% 11.2%;
 
-		--secondary: 0 0% 100%;
+		--secondary: #27272A;
 		--secondary-foreground: 210 40% 98%;
 
 		--accent: 217.2 32.6% 17.5%;
@@ -69,7 +74,7 @@
 		--destructive: 0 62.8% 30.6%;
 		--destructive-foreground: 210 40% 98%;
 
-		--ring: 0 0% 100%;
+		--ring: #27272A;
 	}
 }
 
