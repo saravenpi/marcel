@@ -6,6 +6,7 @@
 	import { Button } from "./ui/button";
 	import Modal from "./Modal.svelte";
 	import { toast } from "svelte-sonner";
+    import { Label } from "./ui/label";
 
 	export let ressource: RessourceType;
 	export let notebookId: string;
@@ -32,8 +33,14 @@
 	}
 </script>
 
-<Modal bind:open={modal} title={ressource.name} description="This ressource is currently used by the AI">
+<Modal
+	bind:open={modal}
+	title={ressource.name}
+	description="This ressource is currently used by the AI"
+>
 	<div class="flex flex-col gap-3 w-full">
+		<Label for="content">Content</Label>
+		<span>{ressource.content}</span>
 		<form
 			action="?/updateRessource"
 			method="POST"
