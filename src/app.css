@@ -38,8 +38,9 @@
 	}
 
 	.container {
+		@apply p-5;
 		@apply bg-transparent rounded-xl border text-black dark:text-white hover:dark:bg-[#27272A] hover:bg-[#F4F4F5] hover:dark:border-[#27272A] hover:border-[#F4F4F5];
-		@apply transition duration-100 ease-in-out
+		@apply transition duration-100 ease-in-out;
 	}
 
 	.description {

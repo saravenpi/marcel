@@ -7,7 +7,7 @@
 
 <a href={"/notebooks/" + notebook.id}>
 	<div
-		class="flex flex-row justify-between place-items-center rounded-xl p-6 container"
+		class="flex flex-row justify-between place-items-center rounded-xl p-5 container"
 	>
 		<div class="flex flex-col md:flex-row place-items-center gap-2">
 			<span class="text-2xl text-black dark:text-white">

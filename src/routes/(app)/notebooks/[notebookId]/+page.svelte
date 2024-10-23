@@ -24,6 +24,7 @@
 	let ressourceModal = false;
 
 	let summary = "Loading summary..."; // Initially, loading state for the summary
+	let loadingSummary = true;
 
 	// Fetch the AI summary when the component is mounted
 	onMount(async () => {
@@ -39,6 +40,7 @@
 				}),
 			});
 
+			loadingSummary = false;
 			if (response.ok) {
 				const result = await response.json();
 				summary = result.summary || "No summary available.";
@@ -46,6 +48,7 @@
 				summary = "Failed to load summary.";
 			}
 		} catch (error) {
+			loadingSummary = false;
 			console.error("Error fetching summary:", error);
 			summary = "Error fetching summary.";
 		}
@@ -104,15 +107,19 @@
 </div>
 
 <!-- Description -->
-<div class="px-6 text-lg pb-6 description">{notebook.description}</div>
+<div class="px-6 text-2xl pb-6 description">{notebook.description}</div>
 
 <Separator class="mb-6" />
 <!-- AI Summary -->
-<div class="pb-6 flex flex-row gap-2 place-items-center">
+<div class="pb-4 flex flex-row gap-2 place-items-center">
 	<Icon icon="mdi:sparkles" class="w-7 h-7 inline" />
 	<span class="text-2xl">AI Summary</span>
 </div>
-<div class="px-6 text-lg pb-6">{summary}</div>
+{#if loadingSummary}
+	<div class="px-6 text-lg pb-6 description">{summary}</div>
+{:else}
+	<div class="px-6 text-lg pb-6">{summary}</div>
+{/if}
 
 <!-- Notes -->
 {#if notes && notes.length > 0}
@@ -121,9 +128,7 @@
 			<Icon icon="material-symbols:note" class="size-7" />
 			<span class="text-2xl">Notes</span>
 		</div>
-		<span class="text-neutral-600 dark:text-neutral-200 text-lg"
-			>{notes.length} found</span
-		>
+		<span class="text-lg description">{notes.length} found</span>
 	</div>
 	<ScrollArea orientation="vertical" class="mb-[60px]">
 		<div class="flex flex-col gap-4 p-3">
@@ -141,9 +146,7 @@
 			<Icon icon="material-symbols:link" class="size-7" />
 			<span class="text-2xl">Ressources</span>
 		</div>
-		<span class="text-neutral-600 dark:text-neutral-200 text-lg"
-			>{ressources.length} found</span
-		>
+		<span class="text-lg description">{ressources.length} found</span>
 	</div>
 	<ScrollArea orientation="vertical" class="mb-[60px]">
 		<div class="flex flex-col gap-4 p-3">
