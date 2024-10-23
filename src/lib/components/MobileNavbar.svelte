@@ -10,7 +10,7 @@
 	import pages from "$lib/pages";
 
 	// variables
-	export let open: boolean; // sidebar state
+	export let open: boolean;
 	export let avatarUrl: string;
 
 	let activePath: string;
@@ -25,9 +25,6 @@
 					<Drawer.Title class="text-3xl text-center">
 						<a href="/">🧘 Marcel</a>
 					</Drawer.Title>
-					<!-- <Drawer.Description class="text-xl"> -->
-					<!-- 	Navigation -->
-					<!-- </Drawer.Description> -->
 
 					{#if avatarUrl}
 						<Avatar.Root class="justify-start ml-2 mx-auto size-16">
