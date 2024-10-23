@@ -21,8 +21,10 @@
 					<Badge class="w-min">All</Badge>
 				{/if}
 			{/if}
-			<span class="text-md truncate max-w-[200px] description">{note.content}</span>
+			<span class="text-md truncate max-w-[200px] description"
+				>{note.content}</span
+			>
 		</div>
-		<Icon icon="akar-icons:chevron-right" class="text-2xl" />
+		<Icon icon="material-symbols:chevron-right" class="h-6 w-6" />
 	</div>
 </a>
