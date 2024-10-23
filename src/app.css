@@ -46,6 +46,10 @@
 		@apply text-[#71717A] dark:text-[#A1A1AA] text-lg
 	}
 
+	.link {
+		@apply dark:text-[#0070F3] text-[#0070F3] hover:text-blue-300 dark:hover:text-blue-300 underline
+	}
+
 	.dark {
 		--background: 0 0% 9%;
 		--foreground: 210 40% 98%;

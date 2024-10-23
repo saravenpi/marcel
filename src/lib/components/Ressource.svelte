@@ -43,7 +43,7 @@
 		<Badge class="w-min">{ressource.type}</Badge>
 		<Label for="content">Content</Label>
 		{#if ressource.type == "video"}
-			<a href={ressource.content} class="underline">{ressource.content}</a
+			<a href={ressource.content} class="link">{ressource.content}</a
 			>
 		{:else}
 			<span>{ressource.content}</span>
@@ -94,7 +94,7 @@
 		</div>
 		{#if ressource.type == "video"}
 			<a
-				class="hidden md:flex text-md truncate max-w-[200px] text-blue-300 underline"
+				class="hidden md:flex text-md truncate max-w-[200px] link"
 				href={ressource.content}
 				target="_blank">{ressource.content}</a
 			>

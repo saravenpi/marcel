@@ -72,7 +72,7 @@
 />
 <CreateNoteModal bind:open={noteModal} notebookId={notebook.id} bind:notes />
 
-<div class="p-6 flex flex-row place-items-center justify-between">
+<div class="py-6 flex flex-row place-items-center justify-between">
 	<a href="/notebooks">
 		<Button variant="outline">
 			<Icon
@@ -97,63 +97,63 @@
 	</div>
 </div>
 
-<!-- Notes -->
-<div class="p-6">
-	<!-- Name -->
-	<div class="text-5xl pb-6 place-items-center flex flex-row gap-3">
-		<Icon icon="carbon:notebook" class="w-12 h-12 inline-block" />
-		<span>{notebook.name}</span>
-	</div>
-
-	<!-- Description -->
-	<div class="px-6 text-2xl pb-6 description">{notebook.description}</div>
-
-	<Separator class="mb-6" />
-	<!-- AI Summary -->
-	<!-- <div class="px-6 text-3xl pb-6">AI Summary</div> -->
-	<!-- <div class="px-6 text-2xl pb-6">{summary}</div> -->
-
-	<!-- Notes -->
-	{#if notes && notes.length > 0}
-		<div class="flex flex-row place-items-center gap-2">
-			<div class="flex flex-row gap-2 place-items-center">
-				<Icon icon="material-symbols:note" class="size-7" />
-				<span class="text-3xl">Notes</span>
-			</div>
-			<span class="text-neutral-600 dark:text-neutral-200 text-lg"
-				>{notes.length} found</span
-			>
-		</div>
-		<ScrollArea orientation="vertical" class="mb-[60px]">
-			<div class="flex flex-col gap-4 p-3">
-				{#each notes as note}
-					<Note {note} destroy={destroyNote} />
-				{/each}
-			</div>
-		</ScrollArea>
-	{/if}
-
-	<!-- Ressources -->
-	{#if ressources && ressources.length > 0}
-		<div class=" flex flex-row place-items-center gap-2">
-			<div class="flex flex-row gap-2 place-items-center">
-				<Icon icon="material-symbols:link" class="size-7" />
-				<span class="text-3xl">Ressources</span>
-			</div>
-			<span class="text-neutral-600 dark:text-neutral-200 text-lg"
-				>{ressources.length} found</span
-			>
-		</div>
-		<ScrollArea orientation="vertical" class="mb-[60px]">
-			<div class="flex flex-col gap-4 p-3">
-				{#each ressources as ressource}
-					<Ressource
-						{ressource}
-						destroy={destroyRessource}
-						notebookId={notebook.id}
-					/>
-				{/each}
-			</div>
-		</ScrollArea>
-	{/if}
+<!-- Name -->
+<div class="text-4xl pb-6 place-items-center flex flex-row gap-3">
+	<Icon icon="carbon:notebook" class="w-7 h-7 inline-block" />
+	<span>{notebook.name}</span>
 </div>
+
+<!-- Description -->
+<div class="px-6 text-lg pb-6 description">{notebook.description}</div>
+
+<Separator class="mb-6" />
+<!-- AI Summary -->
+<div class="pb-6 flex flex-row gap-2 place-items-center">
+	<Icon icon="mdi:sparkles" class="w-7 h-7 inline" />
+	<span class="text-2xl">AI Summary</span>
+</div>
+<div class="px-6 text-lg pb-6">{summary}</div>
+
+<!-- Notes -->
+{#if notes && notes.length > 0}
+	<div class="flex flex-row place-items-center gap-2">
+		<div class="flex flex-row gap-2 place-items-center">
+			<Icon icon="material-symbols:note" class="size-7" />
+			<span class="text-2xl">Notes</span>
+		</div>
+		<span class="text-neutral-600 dark:text-neutral-200 text-lg"
+			>{notes.length} found</span
+		>
+	</div>
+	<ScrollArea orientation="vertical" class="mb-[60px]">
+		<div class="flex flex-col gap-4 p-3">
+			{#each notes as note}
+				<Note {note} destroy={destroyNote} />
+			{/each}
+		</div>
+	</ScrollArea>
+{/if}
+
+<!-- Ressources -->
+{#if ressources && ressources.length > 0}
+	<div class=" flex flex-row place-items-center gap-2">
+		<div class="flex flex-row gap-2 place-items-center">
+			<Icon icon="material-symbols:link" class="size-7" />
+			<span class="text-2xl">Ressources</span>
+		</div>
+		<span class="text-neutral-600 dark:text-neutral-200 text-lg"
+			>{ressources.length} found</span
+		>
+	</div>
+	<ScrollArea orientation="vertical" class="mb-[60px]">
+		<div class="flex flex-col gap-4 p-3">
+			{#each ressources as ressource}
+				<Ressource
+					{ressource}
+					destroy={destroyRessource}
+					notebookId={notebook.id}
+				/>
+			{/each}
+		</div>
+	</ScrollArea>
+{/if}
